@@ -2,761 +2,280 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#070b14">
-    <title>OWL TECH. | My Digital World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<title>OWL TECH. | My Digital World</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --blue: #42a5ff;
-            --bright: #1685ff;
-            --purple: #c05cff;
-            --bg: #070b14;
-            --muted: #9baec9;
-            --border: #1c3455;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: var(--bg);
-            color: #eaf2ff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 8%;
-            border-bottom: 1px solid #182b49;
-            background: var(--bg);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .owl-logo {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .logo {
-            color: var(--blue);
-            font-size: 23px;
-            font-weight: bold;
-        }
-
-        .status {
-            color: #75e6b1;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        /* MỖI SLIDE LÀ MỘT PHẦN TRÊN CÙNG WEBSITE */
-        .slide {
-            display: none;
-            width: 100%;
-            min-height: calc(100vh - 125px);
-            padding: 70px 24px;
-        }
-
-        .slide.active {
-            display: block;
-            animation: slideIn 0.35s ease both;
-        }
-
-        .slide.active.from-left {
-            animation-name: slideFromLeft;
-        }
-
-        .slide.active.from-right {
-            animation-name: slideFromRight;
-        }
-
-        @keyframes slideFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(35px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-35px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .tag {
-            display: inline-block;
-            color: var(--blue);
-            border: 1px solid #24558b;
-            background: #0b1b30;
-            padding: 9px 14px;
-            border-radius: 20px;
-            margin-bottom: 26px;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            font-size: clamp(42px, 8vw, 76px);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        h1 span {
-            color: var(--blue);
-            text-shadow: 0 0 35px #147de055;
-        }
-
-        .description {
-            color: var(--muted);
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 650px;
-            margin-bottom: 28px;
-        }
-
-        .slogan {
-            color: #c0d2ec;
-            font-size: clamp(17px, 2.5vw, 21px);
-            line-height: 1.8;
-            max-width: 700px;
-            padding-left: 16px;
-            border-left: 2px solid var(--blue);
-            margin-bottom: 32px;
-        }
-
-        .button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 22px;
-            background: var(--bright);
-            color: white;
-            text-decoration: none;
-            border: 1px solid transparent;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .button:hover {
-            background: #46a0ff;
-            transform: translateY(-2px);
-        }
-
-        /* NÚT MŨI TÊN QUAY LẠI */
-        .back-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 82px;
-            height: 72px;
-            margin-bottom: 28px;
-            padding: 4px;
-            border: 1px solid transparent;
-            border-radius: 12px;
-            background: transparent;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .back-button:hover {
-            background: #10213a;
-            transform: translateX(-4px);
-        }
-
-        .back-icon {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            filter: drop-shadow(0 0 5px #1685ff55);
-        }
-
-        button:focus-visible,
-        textarea:focus-visible {
-            outline: 2px solid var(--blue);
-            outline-offset: 4px;
-        }
-
-        /* SLIDE KHÁM PHÁ */
-        .explore-menu {
-            display: grid;
-            gap: 16px;
-        }
-
-        .explore-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            width: 100%;
-            padding: 24px;
-            color: #eaf2ff;
-            text-align: left;
-            background: linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        .explore-item:hover {
-            border-color: var(--blue);
-            transform: translateY(-3px);
-        }
-
-        .number {
-            color: var(--blue);
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .item-title {
-            flex: 1;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .arrow {
-            color: var(--blue);
-            font-size: 24px;
-            transition: transform 0.2s;
-        }
-
-        .explore-item:hover .arrow {
-            transform: translateX(5px);
-        }
-
-        /* CÁC KHUNG NỘI DUNG */
-        .content-panel {
-            padding: 28px;
-            background:
-                radial-gradient(ellipse at top right, #10284a55, transparent 60%),
-                linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-        }
-
-        .content-panel h2 {
-            color: #d8e8ff;
-            margin-bottom: 14px;
-        }
-
-        .content-panel p {
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        /* GÓC TÂM SỰ */
-        .dream-form {
-            margin-top: 24px;
-        }
-
-        .dream-form label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .dream-form textarea {
-            display: block;
-            width: 100%;
-            min-height: 180px;
-            padding: 16px;
-            resize: vertical;
-            background: #080e19;
-            border: 1px solid #294466;
-            border-radius: 10px;
-            color: #eaf2ff;
-            font-family: inherit;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        .dream-form textarea:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px #1685ff20;
-        }
-
-        .dream-form textarea::placeholder {
-            color: #7185a2;
-        }
-
-        .form-meta {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 10px 0 18px;
-            color: #8296b3;
-            font-size: 13px;
-        }
-
-        .form-note {
-            margin-top: 15px;
-            color: #8296b3;
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        .dream-message {
-            display: none;
-            margin-top: 16px;
-            padding: 14px;
-            color: #b9ddff;
-            background: #0b1b30;
-            border: 1px solid #24558b;
-            border-radius: 8px;
-            line-height: 1.7;
-        }
-
-        .dream-message.visible {
-            display: block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            border-top: 1px solid #182b49;
-            color: #657b98;
-            font-size: 13px;
-        }
-
-        @media (max-width: 600px) {
-            header {
-                padding: 15px 18px;
-            }
-
-            .owl-logo {
-                width: 38px;
-                height: 38px;
-            }
-
-            .logo {
-                font-size: 17px;
-            }
-
-            .status {
-                font-size: 10px;
-            }
-
-            .slide {
-                padding: 48px 20px;
-            }
-
-            h1 {
-                letter-spacing: -1px;
-            }
-
-            .description {
-                font-size: 16px;
-            }
-
-            .back-button {
-                width: 70px;
-                height: 62px;
-            }
-
-            .explore-item {
-                padding: 19px;
-                gap: 12px;
-            }
-
-            .item-title {
-                font-size: 16px;
-            }
-
-            .content-panel {
-                padding: 20px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#42a5ff;--bright:#1685ff;--purple:#c05cff;--bg:#070b14;--muted:#9baec9;--border:#1c3455}
+body{font-family:Arial,sans-serif;background:var(--bg);color:#eaf2ff;min-height:100vh;overflow-x:hidden}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 8%;border-bottom:1px solid #182b49;background:var(--bg)}
+.brand{display:flex;align-items:center;gap:12px}
+.owl-logo{width:48px;height:48px;object-fit:contain;display:block}
+.logo{color:var(--blue);font-size:23px;font-weight:bold}
+.status{color:#75e6b1;font-size:12px;white-space:nowrap}
+.slide{display:none;width:100%;min-height:calc(100vh - 125px);padding:70px 24px}
+.slide.active{display:block;animation:slideIn .35s ease both}
+.slide.active.from-left{animation-name:slideFromLeft}
+.slide.active.from-right{animation-name:slideFromRight}
+@keyframes slideFromRight{from{opacity:0;transform:translateX(35px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideFromLeft{from{opacity:0;transform:translateX(-35px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideIn{from{opacity:0}to{opacity:1}}
+.container{max-width:1000px;width:100%;margin:0 auto}
+.tag{display:inline-block;color:var(--blue);border:1px solid #24558b;background:#0b1b30;padding:9px 14px;border-radius:20px;margin-bottom:26px;font-size:13px;letter-spacing:.5px}
+h1{font-size:clamp(42px,8vw,76px);line-height:1.1;margin-bottom:24px;letter-spacing:-2px}
+h1 span{color:var(--blue);text-shadow:0 0 35px #147de055}
+.description{color:var(--muted);font-size:18px;line-height:1.8;max-width:650px;margin-bottom:28px}
+.slogan{color:#c0d2ec;font-size:clamp(17px,2.5vw,21px);line-height:1.8;max-width:700px;padding-left:16px;border-left:2px solid var(--blue);margin-bottom:32px}
+.button{display:inline-flex;justify-content:center;align-items:center;gap:12px;padding:14px 22px;background:var(--bright);color:white;text-decoration:none;border:1px solid transparent;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer;transition:.2s}
+.button:hover{background:#46a0ff;transform:translateY(-2px)}
+.button:disabled{opacity:.65;cursor:wait;transform:none}
+.back-button{display:flex;align-items:center;justify-content:center;width:82px;height:72px;margin-bottom:28px;padding:4px;border:1px solid transparent;border-radius:12px;background:transparent;cursor:pointer;transition:.2s}
+.back-button:hover{background:#10213a;transform:translateX(-4px)}
+.back-icon{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 5px #1685ff55)}
+button:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.explore-menu{display:grid;gap:16px}
+.explore-item{display:flex;align-items:center;gap:18px;width:100%;padding:24px;color:#eaf2ff;text-align:left;background:linear-gradient(135deg,#101c30,#0a1220);border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:.25s}
+.explore-item:hover{border-color:var(--blue);transform:translateY(-3px)}
+.number{color:var(--blue);font-size:25px;font-weight:bold}
+.item-title{flex:1;font-size:18px;font-weight:bold}
+.arrow{color:var(--blue);font-size:24px;transition:transform .2s}
+.explore-item:hover .arrow{transform:translateX(5px)}
+.content-panel{padding:28px;background:radial-gradient(ellipse at top right,#10284a55,transparent 60%),linear-gradient(135deg,#101c30,#0a1220);border:1px solid var(--border);border-radius:16px}
+.content-panel h2{color:#d8e8ff;margin-bottom:14px}
+.content-panel p{color:var(--muted);line-height:1.8}
+.dream-form{margin-top:24px}
+.dream-form label{display:block;margin-bottom:10px;font-weight:bold}
+.dream-form textarea{display:block;width:100%;min-height:180px;padding:16px;resize:vertical;background:#080e19;border:1px solid #294466;border-radius:10px;color:#eaf2ff;font-family:inherit;font-size:16px;line-height:1.7}
+.dream-form textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px #1685ff20}
+.dream-form textarea::placeholder{color:#7185a2}
+.form-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:10px 0 18px;color:#8296b3;font-size:13px}
+.form-note{margin-top:15px;color:#8296b3;font-size:13px;line-height:1.7}
+.dream-message{display:none;margin-top:16px;padding:14px;color:#b9ddff;background:#0b1b30;border:1px solid #24558b;border-radius:8px;line-height:1.7}
+.dream-message.visible{display:block}
+footer{text-align:center;padding:25px;border-top:1px solid #182b49;color:#657b98;font-size:13px}
+@media(max-width:600px){
+header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.status{font-size:10px}
+.slide{padding:48px 20px}h1{letter-spacing:-1px}.description{font-size:16px}
+.back-button{width:70px;height:62px}.explore-item{padding:19px;gap:12px}.item-title{font-size:16px}.content-panel{padding:20px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </head>
 
 <body>
-    <header>
-        <div class="brand">
-            <img
-                src="owl1-logo.png"
-                alt="Logo con cú"
-                class="owl-logo"
-            >
-            <div class="logo">OWL TECH.</div>
-        </div>
+<header>
+    <div class="brand">
+        <img src="owl1-logo.png" alt="Logo con cú" class="owl-logo">
+        <div class="logo">OWL TECH.</div>
+    </div>
+    <div class="status">● SYSTEM ONLINE</div>
+</header>
 
-        <div class="status">● SYSTEM ONLINE</div>
-    </header>
+<!-- SLIDE 1 -->
+<section class="slide active" id="homeSlide">
+<div class="container">
+    <div class="tag">WELCOME TO MY WORLD</div>
+    <h1>Think beyond.<br><span>Build the future.</span></h1>
+    <p class="description">Đây là không gian số của tôi, nơi những ý tưởng được hình thành và từng bước trở thành hiện thực. Hành trình công nghệ của tôi bắt đầu từ đây.</p>
+    <p class="slogan">“Học tập vốn dĩ là con đường không bao giờ có đích đến.”</p>
+    <button class="button" type="button" onclick="goToSlide('exploreSlide','forward')">Khám phá thêm <span>→</span></button>
+</div>
+</section>
 
-    <!-- SLIDE 1 -->
-    <section class="slide active" id="homeSlide">
-        <div class="container">
-            <div class="tag">WELCOME TO MY WORLD</div>
+<!-- SLIDE 2 -->
+<section class="slide" id="exploreSlide">
+<div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('homeSlide','back')" aria-label="Quay lại trang chủ" title="Quay lại trang chủ">
+        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="backGradient1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient1)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="tag">EXPLORE</div>
+    <h1>Khám phá <span>thêm.</span></h1>
+    <div class="explore-menu">
+        <button class="explore-item" type="button" onclick="goToSlide('dreamSlide','forward')"><span class="number">01</span><span class="item-title">Góc Tâm Sự</span><span class="arrow">→</span></button>
+        <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Mục 02</span><span class="arrow">→</span></button>
+        <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Mục 03</span><span class="arrow">→</span></button>
+    </div>
+</div>
+</section>
 
-            <h1>
-                Think beyond.<br>
-                <span>Build the future.</span>
-            </h1>
+<!-- SLIDE 3: GÓC TÂM SỰ -->
+<section class="slide" id="dreamSlide">
+<div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
+        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="backGradient2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient2)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="tag">01 / YOUR SPACE</div>
+    <div class="content-panel">
+        <h2>Góc Tâm Sự</h2>
+        <p>Có những điều không dễ nói thành lời. Đây là nơi bạn có thể viết ra suy nghĩ của mình.</p>
+        <form class="dream-form" id="dreamForm">
+            <label for="dreamText">Lời tâm sự của bạn</label>
+            <textarea id="dreamText" maxlength="2000" placeholder="Viết lời tâm sự của bạn tại đây..." required></textarea>
+            <div class="form-meta"><span>Không cần ghi tên</span><span id="charCount">0 / 2000 ký tự</span></div>
+            <button class="button" type="submit">Gửi tâm sự</button>
+            <p class="form-note">Vui lòng không ghi thông tin cá nhân nhạy cảm.</p>
+            <div class="dream-message" id="dreamMessage" role="status" aria-live="polite"></div>
+        </form>
+    </div>
+</div>
+</section>
 
-            <p class="description">
-                Đây là không gian số của tôi, nơi những ý tưởng
-                được hình thành và từng bước trở thành hiện thực.
-                Hành trình công nghệ của tôi bắt đầu từ đây.
-            </p>
+<!-- SLIDE 4 -->
+<section class="slide" id="slide02">
+<div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
+        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="backGradient3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient3)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="tag">02 / EXPLORE</div>
+    <div class="content-panel"><h2>Mục 02</h2><p>Khu vực này đang được phát triển. Những ý tưởng mới sẽ được bổ sung tại đây.</p></div>
+</div>
+</section>
 
-            <p class="slogan">
-                “Học tập vốn dĩ là con đường không bao giờ có đích đến.”
-            </p>
+<!-- SLIDE 5 -->
+<section class="slide" id="slide03">
+<div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
+        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="backGradient4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient4)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="tag">03 / EXPLORE</div>
+    <div class="content-panel"><h2>Mục 03</h2><p>Khu vực này đang được phát triển. Hãy quay lại sau để khám phá thêm.</p></div>
+</div>
+</section>
 
-            <button class="button" type="button"
-                onclick="goToSlide('exploreSlide', 'forward')">
-                Khám phá thêm <span>→</span>
-            </button>
-        </div>
-    </section>
+<footer>© 2026 OWL TECH. · Built with curiosity.</footer>
 
-    <!-- SLIDE 2 -->
-    <section class="slide" id="exploreSlide">
-        <div class="container">
-            <button class="back-button" type="button"
-                onclick="goToSlide('homeSlide', 'back')"
-                aria-label="Quay lại trang chủ"
-                title="Quay lại trang chủ">
-                <svg class="back-icon" viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="backGradient1"
-                            x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M415 300 V205 L210 330 L415 455 V365
-                        C620 350 755 415 760 535
-                        C765 650 660 690 490 715
-                        C680 700 800 640 800 525
-                        C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient1)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-            </button>
+<!-- Thư viện Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/*
+  THAY HAI GIÁ TRỊ BÊN DƯỚI BẰNG THÔNG TIN DỰ ÁN CỦA EM.
+  Chỉ dùng Project URL và Publishable key.
+  TUYỆT ĐỐI KHÔNG ĐƯA SECRET KEY VÀO WEBSITE CÔNG KHAI.
+*/
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_PUBLISHABLE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
-            <div class="tag">EXPLORE</div>
-            <h1>Khám phá <span>thêm.</span></h1>
+let supabaseClient = null;
 
-            <div class="explore-menu">
-                <button class="explore-item" type="button"
-                    onclick="goToSlide('dreamSlide', 'forward')">
-                    <span class="number">01</span>
-                    <span class="item-title">Góc Tâm Sự</span>
-                    <span class="arrow">→</span>
-                </button>
+if (
+    window.supabase &&
+    SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("YOUR_SUPABASE_URL") &&
+    !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE_PUBLISHABLE_KEY")
+) {
+    supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+}
 
-                <button class="explore-item" type="button"
-                    onclick="goToSlide('slide02', 'forward')">
-                    <span class="number">02</span>
-                    <span class="item-title">Mục 02</span>
-                    <span class="arrow">→</span>
-                </button>
+// Chuyển slide
+let currentSlide = "homeSlide";
+let isSwitching = false;
 
-                <button class="explore-item" type="button"
-                    onclick="goToSlide('slide03', 'forward')">
-                    <span class="number">03</span>
-                    <span class="item-title">Mục 03</span>
-                    <span class="arrow">→</span>
-                </button>
-            </div>
-        </div>
-    </section>
+function goToSlide(nextSlideId, direction = "forward") {
+    const current = document.getElementById(currentSlide);
+    const next = document.getElementById(nextSlideId);
 
-    <!-- SLIDE 3: GÓC TÂM SỰ -->
-    <section class="slide" id="dreamSlide">
-        <div class="container">
-            <button class="back-button" type="button"
-                onclick="goToSlide('exploreSlide', 'back')"
-                aria-label="Quay lại mục khám phá"
-                title="Quay lại mục khám phá">
-                <svg class="back-icon" viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="backGradient2"
-                            x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M415 300 V205 L210 330 L415 455 V365
-                        C620 350 755 415 760 535
-                        C765 650 660 690 490 715
-                        C680 700 800 640 800 525
-                        C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient2)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-            </button>
+    if (!current || !next || current === next || isSwitching) return;
 
-            <div class="tag">01 / YOUR SPACE</div>
+    isSwitching = true;
+    current.classList.remove("active", "from-left", "from-right");
+    next.classList.remove("from-left", "from-right");
+    next.classList.add(
+        "active",
+        direction === "back" ? "from-left" : "from-right"
+    );
 
-            <div class="content-panel">
-                <h2>Góc Tâm Sự</h2>
-                <p>
-                    Có những điều không dễ nói thành lời.
-                    Đây là nơi bạn có thể viết ra suy nghĩ của mình.
-                </p>
+    currentSlide = nextSlideId;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
-                <form class="dream-form" id="dreamForm">
-                    <label for="dreamText">Lời tâm sự của bạn</label>
+    setTimeout(function () {
+        next.classList.remove("from-left", "from-right");
+        isSwitching = false;
+    }, 380);
+}
 
-                    <textarea id="dreamText"
-                        maxlength="2000"
-                        placeholder="Viết lời tâm sự của bạn tại đây..."
-                        required></textarea>
+// Lấy các thành phần biểu mẫu
+const dreamText = document.getElementById("dreamText");
+const charCount = document.getElementById("charCount");
+const dreamForm = document.getElementById("dreamForm");
+const dreamMessage = document.getElementById("dreamMessage");
+const submitButton = dreamForm.querySelector('button[type="submit"]');
 
-                    <div class="form-meta">
-                        <span>Không cần ghi tên</span>
-                        <span id="charCount">0 / 2000 ký tự</span>
-                    </div>
+// Đếm ký tự
+dreamText.addEventListener("input", function () {
+    charCount.textContent = dreamText.value.length + " / 2000 ký tự";
+    dreamMessage.classList.remove("visible");
+});
 
-                    <button class="button" type="submit">
-                        Gửi tâm sự
-                    </button>
+// Gửi lời tâm sự lên Supabase
+dreamForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-                    <p class="form-note">
-                        Bản thử nghiệm: nội dung chưa được lưu
-                        hoặc gửi đến người khác.
-                    </p>
+    const content = dreamText.value.trim();
 
-                    <div class="dream-message" id="dreamMessage"
-                        role="status" aria-live="polite"></div>
-                </form>
-            </div>
-        </div>
-    </section>
+    if (!content) {
+        dreamMessage.textContent = "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
+        dreamMessage.classList.add("visible");
+        return;
+    }
 
-    <!-- SLIDE 4: MỤC 02 -->
-    <section class="slide" id="slide02">
-        <div class="container">
-            <button class="back-button" type="button"
-                onclick="goToSlide('exploreSlide', 'back')"
-                aria-label="Quay lại mục khám phá"
-                title="Quay lại mục khám phá">
-                <svg class="back-icon" viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="backGradient3"
-                            x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M415 300 V205 L210 330 L415 455 V365
-                        C620 350 755 415 760 535
-                        C765 650 660 690 490 715
-                        C680 700 800 640 800 525
-                        C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient3)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-            </button>
+    if (content.length > 2000) {
+        dreamMessage.textContent = "Lời tâm sự không được vượt quá 2000 ký tự.";
+        dreamMessage.classList.add("visible");
+        return;
+    }
 
-            <div class="tag">02 / EXPLORE</div>
+    if (!supabaseClient) {
+        dreamMessage.textContent =
+            "Website chưa được cấu hình kết nối. Vui lòng thử lại sau.";
+        dreamMessage.classList.add("visible");
+        return;
+    }
 
-            <div class="content-panel">
-                <h2>Mục 02</h2>
-                <p>
-                    Khu vực này đang được phát triển.
-                    Những ý tưởng mới sẽ được bổ sung tại đây.
-                </p>
-            </div>
-        </div>
-    </section>
+    submitButton.disabled = true;
+    submitButton.textContent = "Đang gửi...";
+    dreamMessage.classList.remove("visible");
 
-    <!-- SLIDE 5: MỤC 03 -->
-    <section class="slide" id="slide03">
-        <div class="container">
-            <button class="back-button" type="button"
-                onclick="goToSlide('exploreSlide', 'back')"
-                aria-label="Quay lại mục khám phá"
-                title="Quay lại mục khám phá">
-                <svg class="back-icon" viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="backGradient4"
-                            x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M415 300 V205 L210 330 L415 455 V365
-                        C620 350 755 415 760 535
-                        C765 650 660 690 490 715
-                        C680 700 800 640 800 525
-                        C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient4)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-                </svg>
-            </button>
+    try {
+        const { error } = await supabaseClient
+            .from("confessions")
+            .insert([{ content: content }]);
 
-            <div class="tag">03 / EXPLORE</div>
+        if (error) throw error;
 
-            <div class="content-panel">
-                <h2>Mục 03</h2>
-                <p>
-                    Khu vực này đang được phát triển.
-                    Hãy quay lại sau để khám phá thêm.
-                </p>
-            </div>
-        </div>
-    </section>
+        dreamMessage.textContent =
+            "Gửi tâm sự thành công. Cảm ơn bạn đã chia sẻ.";
+        dreamMessage.classList.add("visible");
 
-    <footer>
-        © 2026 OWL TECH. · Built with curiosity.
-    </footer>
-
-    <script>
-        /*
-         * CHUYỂN SLIDE NGAY TRÊN TRANG HIỆN TẠI.
-         * Không sử dụng window.location hoặc mở trang mới.
-         */
-        let currentSlide = "homeSlide";
-        let isSwitching = false;
-
-        function goToSlide(nextSlideId, direction = "forward") {
-            const current = document.getElementById(currentSlide);
-            const next = document.getElementById(nextSlideId);
-
-            if (!current || !next || current === next || isSwitching) {
-                return;
-            }
-
-            isSwitching = true;
-
-            current.classList.remove("active", "from-left", "from-right");
-
-            next.classList.remove("from-left", "from-right");
-            next.classList.add(
-                "active",
-                direction === "back" ? "from-left" : "from-right"
-            );
-
-            currentSlide = nextSlideId;
-
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "auto"
-            });
-
-            setTimeout(function () {
-                next.classList.remove("from-left", "from-right");
-                isSwitching = false;
-            }, 380);
-        }
-
-        // Đếm ký tự cho Góc Tâm Sự.
-        const dreamText = document.getElementById("dreamText");
-        const charCount = document.getElementById("charCount");
-        const dreamForm = document.getElementById("dreamForm");
-        const dreamMessage = document.getElementById("dreamMessage");
-
-        dreamText.addEventListener("input", function () {
-            charCount.textContent =
-                dreamText.value.length + " / 2000 ký tự";
-
-            dreamMessage.classList.remove("visible");
-        });
-
-        // Bản demo: chưa lưu hoặc gửi tâm sự lên máy chủ.
-        dreamForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const content = dreamText.value.trim();
-
-            if (!content) {
-                dreamMessage.textContent =
-                    "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
-                dreamMessage.classList.add("visible");
-                return;
-            }
-
-            dreamMessage.textContent =
-                "Bạn đã nhập lời tâm sự thành công trên giao diện. " +
-                "Nội dung hiện chưa được lưu hoặc gửi đến người khác.";
-
-            dreamMessage.classList.add("visible");
-        });
-    </script>
+        dreamText.value = "";
+        charCount.textContent = "0 / 2000 ký tự";
+    } catch (error) {
+        console.error("Lỗi gửi tâm sự:", error);
+        dreamMessage.textContent =
+            "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
+        dreamMessage.classList.add("visible");
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Gửi tâm sự";
+    }
+});
+</script>
 </body>
 </html>
