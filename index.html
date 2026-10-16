@@ -2,236 +2,335 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OWL TECH. | My Digital World</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL TECH. | My Digital World</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #070b14;
-    color: #eaf2ff;
-    min-height: 100vh;
-}
+        :root {
+            --blue: #42a5ff;
+            --blue-bright: #1685ff;
+            --bg: #070b14;
+            --panel: #101c30;
+            --border: #1c3455;
+            --muted: #9baec9;
+        }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
-    border-bottom: 1px solid #182b49;
-}
+        html, body {
+            width: 100%;
+            min-height: 100%;
+        }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: #eaf2ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-.owl-logo {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-}
+        header {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid #182b49;
+            background: rgba(7, 11, 20, 0.96);
+        }
 
-.logo {
-    color: #42a5ff;
-    font-size: 23px;
-    font-weight: bold;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.status {
-    color: #75e6b1;
-    font-size: 13px;
-}
+        .owl-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px #1685ff66);
+        }
 
-main {
-    max-width: 1000px;
-    margin: auto;
-    padding: 80px 24px;
-}
+        .logo {
+            color: var(--blue);
+            font-size: 23px;
+            font-weight: bold;
+        }
 
-.screen {
-    display: none;
-    animation: appear 0.35s ease;
-}
+        .status {
+            color: #75e6b1;
+            font-size: 12px;
+        }
 
-.screen.active {
-    display: block;
-}
+        /* HỆ THỐNG SLIDE */
+        .slide-viewport {
+            position: relative;
+            width: 100%;
+            min-height: calc(100vh - 135px);
+            overflow: hidden;
+        }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            min-height: 100%;
+            padding: 75px 24px;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(100%);
+            pointer-events: none;
+            transition:
+                transform 0.45s ease,
+                opacity 0.35s ease,
+                visibility 0.45s;
+        }
 
-.tag {
-    display: inline-block;
-    color: #42a5ff;
-    border: 1px solid #24558b;
-    background: #0b1b30;
-    padding: 9px 14px;
-    border-radius: 20px;
-    margin-bottom: 28px;
-    font-size: 13px;
-}
+        .slide.active {
+            position: relative;
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
 
-h1 {
-    font-size: clamp(42px, 8vw, 76px);
-    line-height: 1.1;
-    margin-bottom: 24px;
-    letter-spacing: -2px;
-}
+        .slide.from-left {
+            transform: translateX(-100%);
+        }
 
-h1 span {
-    color: #42a5ff;
-    text-shadow: 0 0 35px #147de055;
-}
+        .slide.from-right {
+            transform: translateX(100%);
+        }
 
-.description {
-    color: #9baec9;
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 600px;
-    margin-bottom: 36px;
-}
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
 
-.button {
-    display: inline-block;
-    padding: 14px 22px;
-    background: #1685ff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+        .tag {
+            display: inline-block;
+            color: var(--blue);
+            border: 1px solid #24558b;
+            background: #0b1b30;
+            padding: 9px 14px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
 
-.button:hover {
-    background: #46a0ff;
-    transform: translateY(-2px);
-}
+        h1 {
+            font-size: clamp(42px, 8vw, 76px);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
 
-.back-button {
-    background: transparent;
-    border: 1px solid #24558b;
-    color: #8ecaff;
-    margin-bottom: 30px;
-}
+        h1 span {
+            color: var(--blue);
+            text-shadow: 0 0 35px #147de055;
+        }
 
-.back-button:hover {
-    background: #102846;
-}
+        .description {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 36px;
+        }
 
-.explore-menu {
-    display: grid;
-    gap: 16px;
-    margin-top: 30px;
-}
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            background: var(--blue-bright);
+            color: white;
+            text-decoration: none;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-.explore-item {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 25px;
-    background: linear-gradient(135deg, #101c30, #0a1220);
-    border: 1px solid #1c3455;
-    border-radius: 14px;
-    color: #eaf2ff;
-    text-decoration: none;
-    transition: 0.2s;
-    cursor: pointer;
-}
+        .button:hover {
+            background: #46a0ff;
+            transform: translateY(-2px);
+        }
 
-.explore-item:hover {
-    border-color: #42a5ff;
-    transform: translateY(-3px);
-}
+        .back-button {
+            margin-bottom: 35px;
+            background: transparent;
+            color: #8ecaff;
+            border-color: #24558b;
+        }
 
-.number {
-    color: #42a5ff;
-    font-size: 24px;
-    font-weight: bold;
-}
+        .back-button:hover {
+            background: #102846;
+        }
 
-.item-title {
-    flex: 1;
-    font-size: 18px;
-    font-weight: bold;
-}
+        .slide-title {
+            margin-bottom: 38px;
+        }
 
-.arrow {
-    color: #42a5ff;
-    font-size: 24px;
-}
+        .slide-title h1 {
+            margin-bottom: 0;
+        }
 
-.panel {
-    margin-top: 25px;
-    padding: 28px;
-    background: linear-gradient(135deg, #101c30, #0a1220);
-    border: 1px solid #1c3455;
-    border-radius: 16px;
-    min-height: 220px;
-}
+        /* CÁC MỤC KHÁM PHÁ */
+        .explore-menu {
+            display: grid;
+            gap: 16px;
+        }
 
-.panel h2 {
-    color: #d8e8ff;
-}
+        .explore-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(135deg, #101c30, #0a1220);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: #eaf2ff;
+            text-decoration: none;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.25s, transform 0.25s,
+                        background 0.25s;
+        }
 
-footer {
-    text-align: center;
-    padding: 28px;
-    border-top: 1px solid #182b49;
-    color: #657b98;
-    font-size: 13px;
-}
+        .explore-item:hover {
+            border-color: var(--blue);
+            background: linear-gradient(135deg, #122541, #0a1220);
+            transform: translateY(-3px);
+        }
 
-@media (max-width: 600px) {
-    header {
-        padding: 18px 20px;
-    }
+        .number {
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: bold;
+        }
 
-    .owl-logo {
-        width: 32px;
-        height: 32px;
-    }
+        .item-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-    .logo {
-        font-size: 18px;
-    }
+        .arrow {
+            color: var(--blue);
+            font-size: 24px;
+            transition: transform 0.2s;
+        }
 
-    .status {
-        font-size: 10px;
-    }
+        .explore-item:hover .arrow {
+            transform: translateX(5px);
+        }
 
-    main {
-        padding: 60px 20px;
-    }
+        /* GIAO DIỆN GÓC TÂM SỰ */
+        .dream-space {
+            min-height: 350px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background:
+                radial-gradient(ellipse at top right, #10284a55, transparent 60%),
+                linear-gradient(135deg, #101c30, #080e19);
+            padding: 28px;
+        }
 
-    h1 {
-        letter-spacing: -1px;
-    }
+        .dream-space h2 {
+            color: #d8e8ff;
+            font-size: 24px;
+        }
 
-    .explore-item {
-        padding: 20px;
-        gap: 14px;
-    }
-}
-</style>
+        .placeholder-panel {
+            min-height: 250px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: linear-gradient(135deg, #101c30, #0a1220);
+            padding: 28px;
+        }
+
+        .placeholder-panel h2 {
+            color: #d8e8ff;
+        }
+
+        footer {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #182b49;
+            color: #657b98;
+            font-size: 13px;
+            background: var(--bg);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            .owl-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .status {
+                font-size: 10px;
+            }
+
+            .slide {
+                padding: 48px 20px;
+            }
+
+            h1 {
+                letter-spacing: -1px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .explore-item {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .item-title {
+                font-size: 16px;
+            }
+
+            .dream-space {
+                padding: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slide,
+            .explore-item,
+            .button {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -245,114 +344,151 @@ footer {
     <div class="status">● SYSTEM ONLINE</div>
 </header>
 
-<main>
+<div class="slide-viewport">
 
-    <!-- MÀN HÌNH 1: TRANG CHỦ -->
-    <section class="screen active" id="homeScreen">
-        <div class="tag">WELCOME TO MY WORLD</div>
+    <!-- SLIDE 1: TRANG CHỦ -->
+    <section class="slide active" id="homeSlide">
+        <div class="container">
+            <div class="tag">WELCOME TO MY WORLD</div>
 
-        <h1>
-            Think beyond.<br>
-            <span>Build the future.</span>
-        </h1>
+            <h1>
+                Think beyond.<br>
+                <span>Build the future.</span>
+            </h1>
 
-        <p class="description">
-            Đây là không gian số của tôi, nơi những ý tưởng
-            được hình thành và từng bước trở thành hiện thực.
-            Hành trình công nghệ của tôi bắt đầu từ đây.
-        </p>
+            <p class="description">
+                Đây là không gian số của tôi, nơi những ý tưởng
+                được hình thành và từng bước trở thành hiện thực.
+                Hành trình công nghệ của tôi bắt đầu từ đây.
+            </p>
 
-        <button class="button" onclick="showScreen('exploreScreen')">
-            Khám phá thêm →
-        </button>
+            <button class="button" type="button"
+                    onclick="goToSlide('exploreSlide', 'forward')">
+                Khám phá thêm <span>→</span>
+            </button>
+        </div>
     </section>
 
-    <!-- MÀN HÌNH 2: DANH SÁCH KHÁM PHÁ -->
-    <section class="screen" id="exploreScreen">
-        <button class="button back-button" onclick="showScreen('homeScreen')">
-            ← Quay lại
-        </button>
+    <!-- SLIDE 2: KHÁM PHÁ -->
+    <section class="slide" id="exploreSlide">
+        <div class="container">
+            <button class="button back-button" type="button"
+                    onclick="goToSlide('homeSlide', 'back')">
+                ← Trang chủ
+            </button>
 
-        <div class="tag">EXPLORE</div>
-
-        <h1>Khám phá <span>thêm.</span></h1>
-
-        <div class="explore-menu">
-            <div class="explore-item" onclick="showScreen('dreamScreen')">
-                <span class="number">01</span>
-                <span class="item-title">Góc Tâm Sự</span>
-                <span class="arrow">→</span>
+            <div class="slide-title">
+                <div class="tag">EXPLORE</div>
+                <h1>Khám phá <span>thêm.</span></h1>
             </div>
 
-            <div class="explore-item" onclick="showScreen('screen02')">
-                <span class="number">02</span>
-                <span class="item-title">Mục 02</span>
-                <span class="arrow">→</span>
-            </div>
+            <div class="explore-menu">
+                <button class="explore-item" type="button"
+                        onclick="goToSlide('dreamSlide', 'forward')">
+                    <span class="number">01</span>
+                    <span class="item-title">Góc Tâm Sự</span>
+                    <span class="arrow">→</span>
+                </button>
 
-            <div class="explore-item" onclick="showScreen('screen03')">
-                <span class="number">03</span>
-                <span class="item-title">Mục 03</span>
-                <span class="arrow">→</span>
+                <button class="explore-item" type="button"
+                        onclick="goToSlide('slide02', 'forward')">
+                    <span class="number">02</span>
+                    <span class="item-title">Mục 02</span>
+                    <span class="arrow">→</span>
+                </button>
+
+                <button class="explore-item" type="button"
+                        onclick="goToSlide('slide03', 'forward')">
+                    <span class="number">03</span>
+                    <span class="item-title">Mục 03</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- MÀN HÌNH 3: GÓC TÂM SỰ -->
-    <section class="screen" id="dreamScreen">
-        <button class="button back-button" onclick="showScreen('exploreScreen')">
-            ← Quay lại
-        </button>
+    <!-- SLIDE 3: GÓC TÂM SỰ -->
+    <section class="slide" id="dreamSlide">
+        <div class="container">
+            <button class="button back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')">
+                ← Quay lại
+            </button>
 
-        <section class="panel">
-            <h2>01 / Góc Tâm Sự</h2>
-        </section>
+            <div class="dream-space">
+                <h2>01 / Góc Tâm Sự</h2>
+            </div>
+        </div>
     </section>
 
-    <!-- MÀN HÌNH 4: MỤC 02 -->
-    <section class="screen" id="screen02">
-        <button class="button back-button" onclick="showScreen('exploreScreen')">
-            ← Quay lại
-        </button>
+    <!-- SLIDE 4: MỤC 02 -->
+    <section class="slide" id="slide02">
+        <div class="container">
+            <button class="button back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')">
+                ← Quay lại
+            </button>
 
-        <section class="panel">
-            <h2>02</h2>
-        </section>
+            <div class="placeholder-panel">
+                <h2>02</h2>
+            </div>
+        </div>
     </section>
 
-    <!-- MÀN HÌNH 5: MỤC 03 -->
-    <section class="screen" id="screen03">
-        <button class="button back-button" onclick="showScreen('exploreScreen')">
-            ← Quay lại
-        </button>
+    <!-- SLIDE 5: MỤC 03 -->
+    <section class="slide" id="slide03">
+        <div class="container">
+            <button class="button back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')">
+                ← Quay lại
+            </button>
 
-        <section class="panel">
-            <h2>03</h2>
-        </section>
+            <div class="placeholder-panel">
+                <h2>03</h2>
+            </div>
+        </div>
     </section>
 
-</main>
+</div>
 
 <footer>
     © 2026 My Digital World · Built with curiosity.
 </footer>
 
 <script>
-function showScreen(screenId) {
-    document.querySelectorAll(".screen").forEach(function(screen) {
-        screen.classList.remove("active");
-    });
+    let currentSlide = "homeSlide";
 
-    const targetScreen = document.getElementById(screenId);
+    function goToSlide(nextSlideId, direction) {
+        const current = document.getElementById(currentSlide);
+        const next = document.getElementById(nextSlideId);
 
-    if (targetScreen) {
-        targetScreen.classList.add("active");
+        if (!next || nextSlideId === currentSlide) {
+            return;
+        }
+
+        const goingBack = direction === "back";
+
+        // Đặt slide mới ở bên trái hoặc bên phải trước khi hiện.
+        next.classList.remove("active", "from-left", "from-right");
+        next.classList.add(goingBack ? "from-left" : "from-right");
+
+        // Buộc trình duyệt ghi nhận vị trí ban đầu để chạy animation.
+        void next.offsetWidth;
+
+        // Ẩn slide cũ và đưa slide mới vào màn hình.
+        current.classList.remove("active");
+        current.classList.add(goingBack ? "from-right" : "from-left");
+
+        next.classList.remove("from-left", "from-right");
+        next.classList.add("active");
+
+        currentSlide = nextSlideId;
+
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: "auto"
         });
     }
-}
 </script>
 
 </body>
