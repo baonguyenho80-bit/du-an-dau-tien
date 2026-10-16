@@ -132,13 +132,13 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 
 <!-- SLIDE 4 -->
 
+
 <section class="slide" id="slide02">
   <div class="container">
     <button class="back-button" type="button"
       onclick="goToSlide('exploreSlide','back')"
       aria-label="Quay lại mục khám phá">
-      <svg class="back-icon" viewBox="0 0 1024 1024"
-        xmlns="http://www.w3.org/2000/svg">
+      <svg class="back-icon" viewBox="0 0 1024 1024">
         <path d="M415 300 V205 L210 330 L415 455 V365
         C620 350 755 415 760 535 C765 650 660 690 490 715
         C680 700 800 640 800 525 C800 390 650 290 415 300 Z"
@@ -147,50 +147,49 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
       </svg>
     </button>
 
-    <div class="tag">02 / MY PROJECT</div>
-
-    <h1>Cảnh báo <span>sử dụng điện thoại.</span></h1>
-
+    <div class="tag">02 / AI SAFETY SYSTEM</div>
+    <h1>Cảnh báo <span>thông minh.</span></h1>
     <p class="description">
-      Một dự án ứng dụng trí tuệ nhân tạo nhằm hỗ trợ phát hiện
-      hành vi sử dụng điện thoại và đưa ra cảnh báo khi cần thiết.
+      Chọn những tính năng em muốn sử dụng. Cả hai tính năng
+      đều được bật sẵn khi mở bảng điều khiển.
     </p>
 
     <div class="content-panel">
-      <h2>OWL TECH · AI SAFETY SYSTEM</h2>
+      <h2>Cấu hình hệ thống</h2>
 
-      <p>
-        Hệ thống sử dụng camera và các mô hình AI để phân tích
-        hình ảnh, hỗ trợ phát hiện điện thoại và dấu hiệu buồn ngủ.
-        Khi phát hiện tình huống cần chú ý, hệ thống có thể đưa ra
-        cảnh báo theo cấu hình của chương trình.
-      </p>
+      <label style="display:flex;align-items:center;gap:14px;
+        padding:18px;margin:14px 0;background:#0a1424;
+        border:1px solid #294466;border-radius:10px;cursor:pointer">
+        <input id="enableSleep" type="checkbox" checked
+          style="width:20px;height:20px;accent-color:#42a5ff">
+        <span>
+          <strong>Phát hiện buồn ngủ</strong><br>
+          <span style="color:#9baec9;font-size:14px">
+            Theo dõi dấu hiệu buồn ngủ qua camera
+          </span>
+        </span>
+      </label>
 
-      <div style="margin-top:24px;display:grid;gap:14px">
-        <div class="explore-item" style="cursor:default">
-          <span class="number">01</span>
-          <span class="item-title">Phát hiện điện thoại bằng AI</span>
-        </div>
+      <label style="display:flex;align-items:center;gap:14px;
+        padding:18px;margin:14px 0;background:#0a1424;
+        border:1px solid #294466;border-radius:10px;cursor:pointer">
+        <input id="enablePhone" type="checkbox" checked
+          style="width:20px;height:20px;accent-color:#42a5ff">
+        <span>
+          <strong>Phát hiện sử dụng điện thoại</strong><br>
+          <span style="color:#9baec9;font-size:14px">
+            Nhận diện điện thoại qua camera
+          </span>
+        </span>
+      </label>
 
-        <div class="explore-item" style="cursor:default">
-          <span class="number">02</span>
-          <span class="item-title">Theo dõi dấu hiệu buồn ngủ</span>
-        </div>
-
-        <div class="explore-item" style="cursor:default">
-          <span class="number">03</span>
-          <span class="item-title">Cảnh báo bằng âm thanh</span>
-        </div>
-      </div>
-
-      <p style="margin-top:24px">
-        <strong style="color:#42a5ff">Trạng thái:</strong>
-        Dự án cá nhân đang được phát triển.
+      <p id="aiStatus" role="status"
+        style="margin-top:20px;color:#9baec9;line-height:1.8">
+        Đã chọn cả hai tính năng. Đang chờ kết nối hệ thống AI.
       </p>
     </div>
   </div>
 </section>
-
 <!-- SLIDE 5 -->
 <section class="slide" id="slide03">
 <div class="container">
@@ -319,6 +318,35 @@ dreamForm.addEventListener("submit", async function (event) {
         submitButton.textContent = "Gửi tâm sự";
     }
 });
+
+const enableSleep = document.getElementById("enableSleep");
+const enablePhone = document.getElementById("enablePhone");
+const aiStatus = document.getElementById("aiStatus");
+
+function updateAIFeatures() {
+    const selected = [];
+
+    if (enableSleep.checked) {
+        selected.push("phát hiện buồn ngủ");
+    }
+
+    if (enablePhone.checked) {
+        selected.push("phát hiện điện thoại");
+    }
+
+    if (selected.length === 0) {
+        aiStatus.textContent = "Cả hai tính năng đang được tắt.";
+    } else {
+        aiStatus.textContent =
+            "Đã chọn: " + selected.join(" và ") +
+            ". Các lựa chọn sẽ được áp dụng khi kết nối hệ thống AI.";
+    }
+}
+
+enableSleep.addEventListener("change", updateAIFeatures);
+enablePhone.addEventListener("change", updateAIFeatures);
+
+updateAIFeatures();
 </script>
 </body>
 </html>
