@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070b14">
 <title>OWL TECH. | My Digital World</title>
+<link rel="icon" href="data:," />
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -167,7 +168,7 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
   Chỉ dùng Project URL và Publishable key.
   TUYỆT ĐỐI KHÔNG ĐƯA SECRET KEY VÀO WEBSITE CÔNG KHAI.
 */
-const SUPABASE_URL = "https://viwvmvyczusosmrprdyf.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://viwvmvyczusosmrprdyf.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Vq2aOHQyMRNmDGQgz_v5EQ_bloWffl0";
 
 let supabaseClient = null;
@@ -268,6 +269,7 @@ dreamForm.addEventListener("submit", async function (event) {
         charCount.textContent = "0 / 2000 ký tự";
     } catch (error) {
         console.error("Lỗi gửi tâm sự:", error);
+        alert(JSON.stringify(error));
         dreamMessage.textContent =
             "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
         dreamMessage.classList.add("visible");
