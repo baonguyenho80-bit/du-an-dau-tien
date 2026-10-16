@@ -161,6 +161,7 @@
             text-shadow: 0 0 18px #1685ff22;
         }
 
+        /* NÚT CHUNG */
         .button {
             display: inline-flex;
             justify-content: center;
@@ -183,15 +184,38 @@
             transform: translateY(-2px);
         }
 
+        /* NÚT MŨI TÊN CONG THAY CHO CHỮ QUAY LẠI */
         .back-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 82px;
+            height: 70px;
+            padding: 5px;
             margin-bottom: 35px;
             background: transparent;
-            color: #8ecaff;
-            border-color: #24558b;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.25s;
         }
 
         .back-button:hover {
             background: #102846;
+            transform: translateX(-4px);
+        }
+
+        .back-icon {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            filter: drop-shadow(0 0 5px #1685ff55);
+        }
+
+        .back-button:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 4px;
         }
 
         .slide-title {
@@ -221,8 +245,10 @@
             text-decoration: none;
             text-align: left;
             cursor: pointer;
-            transition: border-color 0.25s, transform 0.25s,
-                        background 0.25s;
+            transition:
+                border-color 0.25s,
+                transform 0.25s,
+                background 0.25s;
         }
 
         .explore-item:hover {
@@ -259,7 +285,11 @@
             border: 1px solid var(--border);
             border-radius: 18px;
             background:
-                radial-gradient(ellipse at top right, #10284a55, transparent 60%),
+                radial-gradient(
+                    ellipse at top right,
+                    #10284a55,
+                    transparent 60%
+                ),
                 linear-gradient(135deg, #101c30, #080e19);
             padding: 28px;
         }
@@ -269,6 +299,7 @@
             font-size: 24px;
         }
 
+        /* CÁC MỤC ĐANG PHÁT TRIỂN */
         .placeholder-panel {
             min-height: 250px;
             border: 1px solid var(--border);
@@ -281,6 +312,7 @@
             color: #d8e8ff;
         }
 
+        /* CHÂN TRANG */
         footer {
             position: relative;
             z-index: 5;
@@ -292,6 +324,7 @@
             background: var(--bg);
         }
 
+        /* ĐIỆN THOẠI */
         @media (max-width: 600px) {
             header {
                 padding: 16px 20px;
@@ -334,12 +367,19 @@
             .dream-space {
                 padding: 20px;
             }
+
+            .back-button {
+                width: 72px;
+                height: 62px;
+            }
         }
 
+        /* HỖ TRỢ NGƯỜI TẮT HIỆU ỨNG CHUYỂN ĐỘNG */
         @media (prefers-reduced-motion: reduce) {
             .slide,
             .explore-item,
-            .button {
+            .button,
+            .back-button {
                 transition: none;
             }
         }
@@ -362,6 +402,7 @@
     <!-- SLIDE 1: TRANG CHỦ -->
     <section class="slide active" id="homeSlide">
         <div class="container">
+
             <div class="tag">WELCOME TO MY WORLD</div>
 
             <h1>
@@ -383,15 +424,64 @@
                     onclick="goToSlide('exploreSlide', 'forward')">
                 Khám phá thêm <span>→</span>
             </button>
+
         </div>
     </section>
 
     <!-- SLIDE 2: KHÁM PHÁ -->
     <section class="slide" id="exploreSlide">
         <div class="container">
+
             <button class="button back-button" type="button"
-                    onclick="goToSlide('homeSlide', 'back')">
-                ← Trang chủ
+                    onclick="goToSlide('homeSlide', 'back')"
+                    aria-label="Về trang chủ"
+                    title="Về trang chủ">
+
+                <svg class="back-icon"
+                     viewBox="0 0 1024 1024"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+
+                    <defs>
+                        <linearGradient id="backGradient1"
+                                        x1="0%" y1="0%"
+                                        x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1685ff"/>
+                            <stop offset="55%" stop-color="#397bff"/>
+                            <stop offset="100%" stop-color="#c05cff"/>
+                        </linearGradient>
+                    </defs>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365
+                           C620 350 755 415 760 535
+                           C765 650 660 690 490 715
+                           C680 700 800 640 800 525
+                           C800 390 650 290 415 300 Z"
+                        fill="none"
+                        stroke="url(#backGradient1)"
+                        stroke-width="11"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365"
+                        fill="none"
+                        stroke="#42a5ff"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        opacity="0.8"/>
+
+                </svg>
             </button>
 
             <div class="slide-title">
@@ -400,6 +490,7 @@
             </div>
 
             <div class="explore-menu">
+
                 <button class="explore-item" type="button"
                         onclick="goToSlide('dreamSlide', 'forward')">
                     <span class="number">01</span>
@@ -420,6 +511,7 @@
                     <span class="item-title">Mục 03</span>
                     <span class="arrow">→</span>
                 </button>
+
             </div>
         </div>
     </section>
@@ -427,42 +519,189 @@
     <!-- SLIDE 3: GÓC TÂM SỰ -->
     <section class="slide" id="dreamSlide">
         <div class="container">
+
             <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')">
-                ← Quay lại
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+
+                <svg class="back-icon"
+                     viewBox="0 0 1024 1024"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+
+                    <defs>
+                        <linearGradient id="backGradient2"
+                                        x1="0%" y1="0%"
+                                        x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1685ff"/>
+                            <stop offset="55%" stop-color="#397bff"/>
+                            <stop offset="100%" stop-color="#c05cff"/>
+                        </linearGradient>
+                    </defs>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365
+                           C620 350 755 415 760 535
+                           C765 650 660 690 490 715
+                           C680 700 800 640 800 525
+                           C800 390 650 290 415 300 Z"
+                        fill="none"
+                        stroke="url(#backGradient2)"
+                        stroke-width="11"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365"
+                        fill="none"
+                        stroke="#42a5ff"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        opacity="0.8"/>
+
+                </svg>
             </button>
 
             <div class="dream-space">
                 <h2>01 / Góc Tâm Sự</h2>
             </div>
+
         </div>
     </section>
 
     <!-- SLIDE 4: MỤC 02 -->
     <section class="slide" id="slide02">
         <div class="container">
+
             <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')">
-                ← Quay lại
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+
+                <svg class="back-icon"
+                     viewBox="0 0 1024 1024"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+
+                    <defs>
+                        <linearGradient id="backGradient3"
+                                        x1="0%" y1="0%"
+                                        x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1685ff"/>
+                            <stop offset="55%" stop-color="#397bff"/>
+                            <stop offset="100%" stop-color="#c05cff"/>
+                        </linearGradient>
+                    </defs>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365
+                           C620 350 755 415 760 535
+                           C765 650 660 690 490 715
+                           C680 700 800 640 800 525
+                           C800 390 650 290 415 300 Z"
+                        fill="none"
+                        stroke="url(#backGradient3)"
+                        stroke-width="11"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365"
+                        fill="none"
+                        stroke="#42a5ff"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        opacity="0.8"/>
+
+                </svg>
             </button>
 
             <div class="placeholder-panel">
                 <h2>02</h2>
             </div>
+
         </div>
     </section>
 
     <!-- SLIDE 5: MỤC 03 -->
     <section class="slide" id="slide03">
         <div class="container">
+
             <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')">
-                ← Quay lại
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+
+                <svg class="back-icon"
+                     viewBox="0 0 1024 1024"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+
+                    <defs>
+                        <linearGradient id="backGradient4"
+                                        x1="0%" y1="0%"
+                                        x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1685ff"/>
+                            <stop offset="55%" stop-color="#397bff"/>
+                            <stop offset="100%" stop-color="#c05cff"/>
+                        </linearGradient>
+                    </defs>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365
+                           C620 350 755 415 760 535
+                           C765 650 660 690 490 715
+                           C680 700 800 640 800 525
+                           C800 390 650 290 415 300 Z"
+                        fill="none"
+                        stroke="url(#backGradient4)"
+                        stroke-width="11"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+
+                    <path
+                        d="M415 300
+                           V205
+                           L210 330
+                           L415 455
+                           V365"
+                        fill="none"
+                        stroke="#42a5ff"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        opacity="0.8"/>
+
+                </svg>
             </button>
 
             <div class="placeholder-panel">
                 <h2>03</h2>
             </div>
+
         </div>
     </section>
 
