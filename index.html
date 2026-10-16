@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWL TECH. | My Digital World</title>
+    <title>My Digital World</title>
 
     <style>
         * {
@@ -13,39 +13,22 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --blue: #42a5ff;
-            --blue-bright: #1685ff;
-            --bg: #070b14;
-            --panel: #101c30;
-            --border: #1c3455;
-            --muted: #9baec9;
-        }
-
-        html, body {
-            width: 100%;
-            min-height: 100%;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background: var(--bg);
+            background: #070b14;
             color: #eaf2ff;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         header {
-            position: relative;
-            z-index: 5;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 24px 8%;
             border-bottom: 1px solid #182b49;
-            background: rgba(7, 11, 20, 0.96);
         }
 
+        /* KHU VỰC LOGO */
         .brand {
             display: flex;
             align-items: center;
@@ -53,79 +36,38 @@
         }
 
         .owl-logo {
-            width: 42px;
-            height: 42px;
+            width: 48px;
+            height: 48px;
             object-fit: contain;
-            filter: drop-shadow(0 0 8px #1685ff66);
+            display: block;
         }
 
         .logo {
-            color: var(--blue);
+            color: #42a5ff;
             font-size: 23px;
             font-weight: bold;
         }
 
         .status {
             color: #75e6b1;
-            font-size: 12px;
+            font-size: 13px;
         }
 
-        /* HỆ THỐNG SLIDE */
-        .slide-viewport {
-            position: relative;
-            width: 100%;
-            min-height: calc(100vh - 135px);
-            overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            min-height: 100%;
-            padding: 75px 24px;
-            visibility: hidden;
-            opacity: 0;
-            transform: translateX(100%);
-            pointer-events: none;
-            transition:
-                transform 0.45s ease,
-                opacity 0.35s ease,
-                visibility 0.45s;
-        }
-
-        .slide.active {
-            position: relative;
-            visibility: visible;
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: auto;
-        }
-
-        .slide.from-left {
-            transform: translateX(-100%);
-        }
-
-        .slide.from-right {
-            transform: translateX(100%);
-        }
-
-        .container {
+        main {
             max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
+            margin: auto;
+            padding: 100px 24px;
         }
 
         .tag {
             display: inline-block;
-            color: var(--blue);
+            color: #42a5ff;
             border: 1px solid #24558b;
             background: #0b1b30;
             padding: 9px 14px;
             border-radius: 20px;
             margin-bottom: 28px;
             font-size: 13px;
-            letter-spacing: 0.5px;
         }
 
         h1 {
@@ -136,46 +78,26 @@
         }
 
         h1 span {
-            color: var(--blue);
+            color: #42a5ff;
             text-shadow: 0 0 35px #147de055;
         }
 
         .description {
-            color: var(--muted);
+            color: #9baec9;
             font-size: 18px;
             line-height: 1.8;
             max-width: 600px;
             margin-bottom: 36px;
         }
 
-        /* SLOGAN OWL TECH */
-        .slogan {
-            color: #b8cce6;
-            font-size: clamp(17px, 2.2vw, 21px);
-            line-height: 1.8;
-            max-width: 720px;
-            margin: -8px 0 32px;
-            padding-left: 16px;
-            border-left: 2px solid var(--blue);
-            letter-spacing: 0.2px;
-            text-shadow: 0 0 18px #1685ff22;
-        }
-
-        /* NÚT CHUNG */
         .button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            display: inline-block;
             padding: 14px 22px;
-            background: var(--blue-bright);
+            background: #1685ff;
             color: white;
             text-decoration: none;
-            border: 1px solid transparent;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
             transition: 0.2s;
         }
 
@@ -184,167 +106,53 @@
             transform: translateY(-2px);
         }
 
-        /* NÚT MŨI TÊN CONG THAY CHO CHỮ QUAY LẠI */
-        .back-button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 82px;
-            height: 70px;
-            padding: 5px;
-            margin-bottom: 35px;
-            background: transparent;
-            border: 1px solid transparent;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: background 0.25s, transform 0.25s;
-        }
-
-        .back-button:hover {
-            background: #102846;
-            transform: translateX(-4px);
-        }
-
-        .back-icon {
-            display: block;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-            filter: drop-shadow(0 0 5px #1685ff55);
-        }
-
-        .back-button:focus-visible {
-            outline: 2px solid var(--blue);
-            outline-offset: 4px;
-        }
-
-        .slide-title {
-            margin-bottom: 38px;
-        }
-
-        .slide-title h1 {
-            margin-bottom: 0;
-        }
-
-        /* CÁC MỤC KHÁM PHÁ */
-        .explore-menu {
-            display: grid;
-            gap: 16px;
-        }
-
-        .explore-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            padding: 25px;
-            background: linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            color: #eaf2ff;
-            text-decoration: none;
-            text-align: left;
-            cursor: pointer;
-            transition:
-                border-color 0.25s,
-                transform 0.25s,
-                background 0.25s;
-        }
-
-        .explore-item:hover {
-            border-color: var(--blue);
-            background: linear-gradient(135deg, #122541, #0a1220);
-            transform: translateY(-3px);
-        }
-
-        .number {
-            color: var(--blue);
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .item-title {
-            flex: 1;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .arrow {
-            color: var(--blue);
-            font-size: 24px;
-            transition: transform 0.2s;
-        }
-
-        .explore-item:hover .arrow {
-            transform: translateX(5px);
-        }
-
-        /* GIAO DIỆN GÓC TÂM SỰ */
-        .dream-space {
-            min-height: 350px;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            background:
-                radial-gradient(
-                    ellipse at top right,
-                    #10284a55,
-                    transparent 60%
-                ),
-                linear-gradient(135deg, #101c30, #080e19);
+        .panel {
+            margin-top: 70px;
             padding: 28px;
-        }
-
-        .dream-space h2 {
-            color: #d8e8ff;
-            font-size: 24px;
-        }
-
-        /* CÁC MỤC ĐANG PHÁT TRIỂN */
-        .placeholder-panel {
-            min-height: 250px;
-            border: 1px solid var(--border);
+            background: linear-gradient(135deg, #101c30, #0a1220);
+            border: 1px solid #1c3455;
             border-radius: 16px;
-            background: linear-gradient(135deg, #101c30, #0a1220);
-            padding: 28px;
         }
 
-        .placeholder-panel h2 {
+        .panel h2 {
+            margin-bottom: 12px;
             color: #d8e8ff;
         }
 
-        /* CHÂN TRANG */
+        .panel p {
+            color: #9baec9;
+            line-height: 1.8;
+        }
+
         footer {
-            position: relative;
-            z-index: 5;
             text-align: center;
-            padding: 25px;
+            padding: 28px;
             border-top: 1px solid #182b49;
             color: #657b98;
             font-size: 13px;
-            background: var(--bg);
         }
 
-        /* ĐIỆN THOẠI */
         @media (max-width: 600px) {
             header {
-                padding: 16px 20px;
+                padding: 20px;
+                gap: 12px;
             }
 
             .owl-logo {
-                width: 34px;
-                height: 34px;
+                width: 38px;
+                height: 38px;
             }
 
             .logo {
-                font-size: 18px;
+                font-size: 17px;
             }
 
             .status {
                 font-size: 10px;
             }
 
-            .slide {
-                padding: 48px 20px;
+            main {
+                padding-top: 70px;
             }
 
             h1 {
@@ -355,397 +163,57 @@
                 font-size: 16px;
             }
 
-            .explore-item {
-                padding: 20px;
-                gap: 14px;
-            }
-
-            .item-title {
-                font-size: 16px;
-            }
-
-            .dream-space {
-                padding: 20px;
-            }
-
-            .back-button {
-                width: 72px;
-                height: 62px;
-            }
-        }
-
-        /* HỖ TRỢ NGƯỜI TẮT HIỆU ỨNG CHUYỂN ĐỘNG */
-        @media (prefers-reduced-motion: reduce) {
-            .slide,
-            .explore-item,
-            .button,
-            .back-button {
-                transition: none;
+            .panel {
+                padding: 22px;
             }
         }
     </style>
 </head>
 
 <body>
+    <header>
+        <div class="brand">
+            <img
+                src="owl1-logo.png"
+                alt="Logo con cú"
+                class="owl-logo"
+            >
 
-<header>
-    <div class="brand">
-        <img src="owl-logo.png" alt="Logo con cú" class="owl-logo">
-        <div class="logo">OWL TECH.</div>
-    </div>
+            <div class="logo">MY DIGITAL WORLD.</div>
+        </div>
 
-    <div class="status">● SYSTEM ONLINE</div>
-</header>
+        <div class="status">● SYSTEM ONLINE</div>
+    </header>
 
-<div class="slide-viewport">
+    <main>
+        <div class="tag">WELCOME TO MY WORLD</div>
 
-    <!-- SLIDE 1: TRANG CHỦ -->
-    <section class="slide active" id="homeSlide">
-        <div class="container">
+        <h1>
+            Think beyond.<br>
+            <span>Build the future.</span>
+        </h1>
 
-            <div class="tag">WELCOME TO MY WORLD</div>
+        <p class="description">
+            Đây là không gian số của tôi, nơi những ý tưởng
+            được hình thành và từng bước trở thành hiện thực.
+            Hành trình công nghệ của tôi bắt đầu từ đây.
+        </p>
 
-            <h1>
-                Think beyond.<br>
-                <span>Build the future.</span>
-            </h1>
+        <a class="button" href="#about">Khám phá thêm →</a>
 
-            <p class="description">
-                Đây là không gian số của tôi, nơi những ý tưởng
-                được hình thành và từng bước trở thành hiện thực.
-                Hành trình công nghệ của tôi bắt đầu từ đây.
+        <section class="panel" id="about">
+            <h2>01 / About this project</h2>
+
+            <p>
+                Một dự án đang được phát triển.
+                Giao diện này là bước khởi đầu cho hành trình
+                xây dựng những sản phẩm công nghệ của riêng tôi.
             </p>
+        </section>
+    </main>
 
-            <p class="slogan">
-                “Học tập vốn dĩ là con đường không bao giờ có đích đến.”
-            </p>
-
-            <button class="button" type="button"
-                    onclick="goToSlide('exploreSlide', 'forward')">
-                Khám phá thêm <span>→</span>
-            </button>
-
-        </div>
-    </section>
-
-    <!-- SLIDE 2: KHÁM PHÁ -->
-    <section class="slide" id="exploreSlide">
-        <div class="container">
-
-            <button class="button back-button" type="button"
-                    onclick="goToSlide('homeSlide', 'back')"
-                    aria-label="Về trang chủ"
-                    title="Về trang chủ">
-
-                <svg class="back-icon"
-                     viewBox="0 0 1024 1024"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-
-                    <defs>
-                        <linearGradient id="backGradient1"
-                                        x1="0%" y1="0%"
-                                        x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365
-                           C620 350 755 415 760 535
-                           C765 650 660 690 490 715
-                           C680 700 800 640 800 525
-                           C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient1)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365"
-                        fill="none"
-                        stroke="#42a5ff"
-                        stroke-width="4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        opacity="0.8"/>
-
-                </svg>
-            </button>
-
-            <div class="slide-title">
-                <div class="tag">EXPLORE</div>
-                <h1>Khám phá <span>thêm.</span></h1>
-            </div>
-
-            <div class="explore-menu">
-
-                <button class="explore-item" type="button"
-                        onclick="goToSlide('dreamSlide', 'forward')">
-                    <span class="number">01</span>
-                    <span class="item-title">Góc Tâm Sự</span>
-                    <span class="arrow">→</span>
-                </button>
-
-                <button class="explore-item" type="button"
-                        onclick="goToSlide('slide02', 'forward')">
-                    <span class="number">02</span>
-                    <span class="item-title">Mục 02</span>
-                    <span class="arrow">→</span>
-                </button>
-
-                <button class="explore-item" type="button"
-                        onclick="goToSlide('slide03', 'forward')">
-                    <span class="number">03</span>
-                    <span class="item-title">Mục 03</span>
-                    <span class="arrow">→</span>
-                </button>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SLIDE 3: GÓC TÂM SỰ -->
-    <section class="slide" id="dreamSlide">
-        <div class="container">
-
-            <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')"
-                    aria-label="Quay lại mục khám phá"
-                    title="Quay lại mục khám phá">
-
-                <svg class="back-icon"
-                     viewBox="0 0 1024 1024"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-
-                    <defs>
-                        <linearGradient id="backGradient2"
-                                        x1="0%" y1="0%"
-                                        x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365
-                           C620 350 755 415 760 535
-                           C765 650 660 690 490 715
-                           C680 700 800 640 800 525
-                           C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient2)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365"
-                        fill="none"
-                        stroke="#42a5ff"
-                        stroke-width="4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        opacity="0.8"/>
-
-                </svg>
-            </button>
-
-            <div class="dream-space">
-                <h2>01 / Góc Tâm Sự</h2>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SLIDE 4: MỤC 02 -->
-    <section class="slide" id="slide02">
-        <div class="container">
-
-            <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')"
-                    aria-label="Quay lại mục khám phá"
-                    title="Quay lại mục khám phá">
-
-                <svg class="back-icon"
-                     viewBox="0 0 1024 1024"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-
-                    <defs>
-                        <linearGradient id="backGradient3"
-                                        x1="0%" y1="0%"
-                                        x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365
-                           C620 350 755 415 760 535
-                           C765 650 660 690 490 715
-                           C680 700 800 640 800 525
-                           C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient3)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365"
-                        fill="none"
-                        stroke="#42a5ff"
-                        stroke-width="4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        opacity="0.8"/>
-
-                </svg>
-            </button>
-
-            <div class="placeholder-panel">
-                <h2>02</h2>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SLIDE 5: MỤC 03 -->
-    <section class="slide" id="slide03">
-        <div class="container">
-
-            <button class="button back-button" type="button"
-                    onclick="goToSlide('exploreSlide', 'back')"
-                    aria-label="Quay lại mục khám phá"
-                    title="Quay lại mục khám phá">
-
-                <svg class="back-icon"
-                     viewBox="0 0 1024 1024"
-                     xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true">
-
-                    <defs>
-                        <linearGradient id="backGradient4"
-                                        x1="0%" y1="0%"
-                                        x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#1685ff"/>
-                            <stop offset="55%" stop-color="#397bff"/>
-                            <stop offset="100%" stop-color="#c05cff"/>
-                        </linearGradient>
-                    </defs>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365
-                           C620 350 755 415 760 535
-                           C765 650 660 690 490 715
-                           C680 700 800 640 800 525
-                           C800 390 650 290 415 300 Z"
-                        fill="none"
-                        stroke="url(#backGradient4)"
-                        stroke-width="11"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-
-                    <path
-                        d="M415 300
-                           V205
-                           L210 330
-                           L415 455
-                           V365"
-                        fill="none"
-                        stroke="#42a5ff"
-                        stroke-width="4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        opacity="0.8"/>
-
-                </svg>
-            </button>
-
-            <div class="placeholder-panel">
-                <h2>03</h2>
-            </div>
-
-        </div>
-    </section>
-
-</div>
-
-<footer>
-    © 2026 My Digital World · Built with curiosity.
-</footer>
-
-<script>
-    let currentSlide = "homeSlide";
-
-    function goToSlide(nextSlideId, direction) {
-        const current = document.getElementById(currentSlide);
-        const next = document.getElementById(nextSlideId);
-
-        if (!next || nextSlideId === currentSlide) {
-            return;
-        }
-
-        const goingBack = direction === "back";
-
-        // Đặt slide mới ở bên trái hoặc bên phải trước khi hiện.
-        next.classList.remove("active", "from-left", "from-right");
-        next.classList.add(goingBack ? "from-left" : "from-right");
-
-        // Buộc trình duyệt ghi nhận vị trí ban đầu để chạy animation.
-        void next.offsetWidth;
-
-        // Ẩn slide cũ và đưa slide mới vào màn hình.
-        current.classList.remove("active");
-        current.classList.add(goingBack ? "from-right" : "from-left");
-
-        next.classList.remove("from-left", "from-right");
-        next.classList.add("active");
-
-        currentSlide = nextSlideId;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "auto"
-        });
-    }
-</script>
-
+    <footer>
+        © 2026 My Digital World · Built with curiosity.
+    </footer>
 </body>
 </html>
