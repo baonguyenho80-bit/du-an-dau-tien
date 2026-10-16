@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital World</title>
+    <title>OWL TECH. | My Digital World</title>
 
     <style>
         * {
@@ -13,22 +13,39 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --blue: #42a5ff;
+            --blue-bright: #1685ff;
+            --bg: #070b14;
+            --panel: #101c30;
+            --border: #1c3455;
+            --muted: #9baec9;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background: #070b14;
+            background: var(--bg);
             color: #eaf2ff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
+            position: relative;
+            z-index: 5;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 8%;
+            gap: 15px;
+            padding: 20px 8%;
             border-bottom: 1px solid #182b49;
+            background: #070b14;
         }
 
-        /* KHU VỰC LOGO */
         .brand {
             display: flex;
             align-items: center;
@@ -43,31 +60,63 @@
         }
 
         .logo {
-            color: #42a5ff;
+            color: var(--blue);
             font-size: 23px;
             font-weight: bold;
         }
 
         .status {
             color: #75e6b1;
-            font-size: 13px;
+            font-size: 12px;
+            white-space: nowrap;
         }
 
-        main {
+        /* HỆ THỐNG SLIDE */
+        .slide-viewport {
+            position: relative;
+            min-height: calc(100vh - 130px);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            min-height: calc(100vh - 130px);
+            padding: 75px 24px;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .container {
             max-width: 1000px;
-            margin: auto;
-            padding: 100px 24px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .tag {
             display: inline-block;
-            color: #42a5ff;
+            color: var(--blue);
             border: 1px solid #24558b;
             background: #0b1b30;
             padding: 9px 14px;
             border-radius: 20px;
             margin-bottom: 28px;
             font-size: 13px;
+            letter-spacing: 0.5px;
         }
 
         h1 {
@@ -78,27 +127,44 @@
         }
 
         h1 span {
-            color: #42a5ff;
+            color: var(--blue);
             text-shadow: 0 0 35px #147de055;
         }
 
         .description {
-            color: #9baec9;
+            color: var(--muted);
             font-size: 18px;
             line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 36px;
+            max-width: 650px;
+            margin-bottom: 30px;
         }
 
+        .slogan {
+            color: #b8cce6;
+            font-size: clamp(17px, 2.2vw, 21px);
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 0 32px;
+            padding-left: 16px;
+            border-left: 2px solid var(--blue);
+        }
+
+        /* NÚT CHUNG */
         .button {
-            display: inline-block;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
             padding: 14px 22px;
-            background: #1685ff;
+            background: var(--blue-bright);
             color: white;
             text-decoration: none;
+            border: 1px solid transparent;
             border-radius: 8px;
             font-weight: bold;
-            transition: 0.2s;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
         }
 
         .button:hover {
@@ -106,27 +172,194 @@
             transform: translateY(-2px);
         }
 
-        .panel {
-            margin-top: 70px;
-            padding: 28px;
+        /* MŨI TÊN QUAY LẠI */
+        .back-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 82px;
+            height: 70px;
+            padding: 5px;
+            margin-bottom: 30px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background: #102846;
+            transform: translateX(-4px);
+        }
+
+        .back-icon {
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: visible;
+            filter: drop-shadow(0 0 5px #1685ff55);
+        }
+
+        .back-button:focus-visible,
+        .button:focus-visible,
+        .explore-item:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .slide-title {
+            margin-bottom: 38px;
+        }
+
+        .slide-title h1 {
+            margin-bottom: 0;
+        }
+
+        /* DANH SÁCH KHÁM PHÁ */
+        .explore-menu {
+            display: grid;
+            gap: 16px;
+        }
+
+        .explore-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            padding: 25px;
             background: linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid #1c3455;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: #eaf2ff;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .explore-item:hover {
+            border-color: var(--blue);
+            transform: translateY(-3px);
+        }
+
+        .number {
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .item-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            color: var(--blue);
+            font-size: 24px;
+            transition: transform 0.2s;
+        }
+
+        .explore-item:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        /* GÓC TÂM SỰ */
+        .dream-space,
+        .placeholder-panel {
+            min-height: 260px;
+            padding: 28px;
+            background:
+                radial-gradient(ellipse at top right, #10284a55, transparent 60%),
+                linear-gradient(135deg, #101c30, #080e19);
+            border: 1px solid var(--border);
             border-radius: 16px;
         }
 
-        .panel h2 {
-            margin-bottom: 12px;
+        .dream-space h2,
+        .placeholder-panel h2 {
             color: #d8e8ff;
+            margin-bottom: 15px;
         }
 
-        .panel p {
-            color: #9baec9;
+        .dream-intro,
+        .placeholder-panel p {
+            color: var(--muted);
             line-height: 1.8;
         }
 
+        .dream-form {
+            margin-top: 24px;
+        }
+
+        .dream-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #d8e8ff;
+            font-weight: bold;
+        }
+
+        .dream-form textarea {
+            display: block;
+            width: 100%;
+            min-height: 180px;
+            resize: vertical;
+            padding: 16px;
+            background: #080e19;
+            border: 1px solid #294466;
+            border-radius: 10px;
+            color: #eaf2ff;
+            font: inherit;
+            line-height: 1.7;
+            outline: none;
+        }
+
+        .dream-form textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px #1685ff20;
+        }
+
+        .dream-form textarea::placeholder {
+            color: #7185a2;
+        }
+
+        .form-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 10px 0 18px;
+            color: #8296b3;
+            font-size: 13px;
+        }
+
+        .form-note {
+            color: #8296b3;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+
+        .dream-message {
+            display: none;
+            margin-top: 16px;
+            padding: 13px;
+            border: 1px solid #24558b;
+            border-radius: 8px;
+            color: #b9ddff;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .dream-message.visible {
+            display: block;
+        }
+
         footer {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 28px;
+            padding: 25px;
             border-top: 1px solid #182b49;
             color: #657b98;
             font-size: 13px;
@@ -134,8 +367,7 @@
 
         @media (max-width: 600px) {
             header {
-                padding: 20px;
-                gap: 12px;
+                padding: 16px 20px;
             }
 
             .owl-logo {
@@ -151,8 +383,8 @@
                 font-size: 10px;
             }
 
-            main {
-                padding-top: 70px;
+            .slide {
+                padding: 48px 20px;
             }
 
             h1 {
@@ -163,8 +395,33 @@
                 font-size: 16px;
             }
 
-            .panel {
-                padding: 22px;
+            .explore-item {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .item-title {
+                font-size: 16px;
+            }
+
+            .dream-space,
+            .placeholder-panel {
+                padding: 20px;
+            }
+
+            .back-button {
+                width: 72px;
+                height: 62px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -178,42 +435,312 @@
                 alt="Logo con cú"
                 class="owl-logo"
             >
-
-            <div class="logo">MY DIGITAL WORLD.</div>
+            <div class="logo">OWL TECH.</div>
         </div>
 
         <div class="status">● SYSTEM ONLINE</div>
     </header>
 
-    <main>
-        <div class="tag">WELCOME TO MY WORLD</div>
+    <div class="slide-viewport">
 
-        <h1>
-            Think beyond.<br>
-            <span>Build the future.</span>
-        </h1>
+        <!-- SLIDE 1: TRANG CHỦ -->
+        <section class="slide active" id="homeSlide">
+            <div class="container">
+                <div class="tag">WELCOME TO MY WORLD</div>
 
-        <p class="description">
-            Đây là không gian số của tôi, nơi những ý tưởng
-            được hình thành và từng bước trở thành hiện thực.
-            Hành trình công nghệ của tôi bắt đầu từ đây.
-        </p>
+                <h1>
+                    Think beyond.<br>
+                    <span>Build the future.</span>
+                </h1>
 
-        <a class="button" href="#about">Khám phá thêm →</a>
+                <p class="description">
+                    Đây là không gian số của tôi, nơi những ý tưởng
+                    được hình thành và từng bước trở thành hiện thực.
+                    Hành trình công nghệ của tôi bắt đầu từ đây.
+                </p>
 
-        <section class="panel" id="about">
-            <h2>01 / About this project</h2>
+                <p class="slogan">
+                    “Học tập vốn dĩ là con đường không bao giờ có đích đến.”
+                </p>
 
-            <p>
-                Một dự án đang được phát triển.
-                Giao diện này là bước khởi đầu cho hành trình
-                xây dựng những sản phẩm công nghệ của riêng tôi.
-            </p>
+                <button class="button" type="button"
+                    onclick="goToSlide('exploreSlide', 'forward')">
+                    Khám phá thêm <span>→</span>
+                </button>
+            </div>
         </section>
-    </main>
+
+        <!-- SLIDE 2: KHÁM PHÁ -->
+        <section class="slide" id="exploreSlide">
+            <div class="container">
+
+                <button class="back-button" type="button"
+                    onclick="goToSlide('homeSlide', 'back')"
+                    aria-label="Về trang chủ" title="Về trang chủ">
+                    <svg class="back-icon" viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="backGradient1"
+                                x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1685ff"/>
+                                <stop offset="55%" stop-color="#397bff"/>
+                                <stop offset="100%" stop-color="#c05cff"/>
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M415 300 V205 L210 330 L415 455 V365
+                               C620 350 755 415 760 535
+                               C765 650 660 690 490 715
+                               C680 700 800 640 800 525
+                               C800 390 650 290 415 300 Z"
+                            fill="none" stroke="url(#backGradient1)"
+                            stroke-width="11" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <div class="slide-title">
+                    <div class="tag">EXPLORE</div>
+                    <h1>Khám phá <span>thêm.</span></h1>
+                </div>
+
+                <div class="explore-menu">
+                    <button class="explore-item" type="button"
+                        onclick="goToSlide('dreamSlide', 'forward')">
+                        <span class="number">01</span>
+                        <span class="item-title">Góc Tâm Sự</span>
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <button class="explore-item" type="button"
+                        onclick="goToSlide('slide02', 'forward')">
+                        <span class="number">02</span>
+                        <span class="item-title">Mục 02</span>
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <button class="explore-item" type="button"
+                        onclick="goToSlide('slide03', 'forward')">
+                        <span class="number">03</span>
+                        <span class="item-title">Mục 03</span>
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: GÓC TÂM SỰ -->
+        <section class="slide" id="dreamSlide">
+            <div class="container">
+
+                <button class="back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+                    <svg class="back-icon" viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="backGradient2"
+                                x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1685ff"/>
+                                <stop offset="55%" stop-color="#397bff"/>
+                                <stop offset="100%" stop-color="#c05cff"/>
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M415 300 V205 L210 330 L415 455 V365
+                               C620 350 755 415 760 535
+                               C765 650 660 690 490 715
+                               C680 700 800 640 800 525
+                               C800 390 650 290 415 300 Z"
+                            fill="none" stroke="url(#backGradient2)"
+                            stroke-width="11" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <div class="tag">01 / YOUR SPACE</div>
+
+                <div class="dream-space">
+                    <h2>Góc Tâm Sự</h2>
+                    <p class="dream-intro">
+                        Có những điều không dễ nói thành lời.
+                        Đây là nơi bạn có thể viết ra suy nghĩ của mình.
+                    </p>
+
+                    <form class="dream-form" id="dreamForm">
+                        <label for="dreamText">Lời tâm sự của bạn</label>
+
+                        <textarea
+                            id="dreamText"
+                            maxlength="2000"
+                            placeholder="Viết lời tâm sự của bạn tại đây..."
+                            required></textarea>
+
+                        <div class="form-meta">
+                            <span>Không cần ghi tên</span>
+                            <span id="charCount">0 / 2000 ký tự</span>
+                        </div>
+
+                        <button class="button" type="submit">
+                            Gửi tâm sự
+                        </button>
+
+                        <p class="form-note">
+                            Bản thử nghiệm: nội dung chưa được lưu
+                            hoặc gửi đến người khác.
+                        </p>
+
+                        <div class="dream-message" id="dreamMessage"
+                            role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: MỤC 02 -->
+        <section class="slide" id="slide02">
+            <div class="container">
+
+                <button class="back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+                    <svg class="back-icon" viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="backGradient3"
+                                x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1685ff"/>
+                                <stop offset="55%" stop-color="#397bff"/>
+                                <stop offset="100%" stop-color="#c05cff"/>
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M415 300 V205 L210 330 L415 455 V365
+                               C620 350 755 415 760 535
+                               C765 650 660 690 490 715
+                               C680 700 800 640 800 525
+                               C800 390 650 290 415 300 Z"
+                            fill="none" stroke="url(#backGradient3)"
+                            stroke-width="11" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <div class="tag">02 / EXPLORE</div>
+
+                <div class="placeholder-panel">
+                    <h2>Mục 02</h2>
+                    <p>
+                        Khu vực này đang được phát triển.
+                        Những ý tưởng mới sẽ được bổ sung tại đây.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: MỤC 03 -->
+        <section class="slide" id="slide03">
+            <div class="container">
+
+                <button class="back-button" type="button"
+                    onclick="goToSlide('exploreSlide', 'back')"
+                    aria-label="Quay lại mục khám phá"
+                    title="Quay lại mục khám phá">
+                    <svg class="back-icon" viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="backGradient4"
+                                x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1685ff"/>
+                                <stop offset="55%" stop-color="#397bff"/>
+                                <stop offset="100%" stop-color="#c05cff"/>
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M415 300 V205 L210 330 L415 455 V365
+                               C620 350 755 415 760 535
+                               C765 650 660 690 490 715
+                               C680 700 800 640 800 525
+                               C800 390 650 290 415 300 Z"
+                            fill="none" stroke="url(#backGradient4)"
+                            stroke-width="11" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <div class="tag">03 / EXPLORE</div>
+
+                <div class="placeholder-panel">
+                    <h2>Mục 03</h2>
+                    <p>
+                        Khu vực này đang được phát triển.
+                        Hãy quay lại sau để khám phá thêm.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
     <footer>
-        © 2026 My Digital World · Built with curiosity.
+        © 2026 OWL TECH. · Built with curiosity.
     </footer>
+
+    <script>
+        let currentSlide = "homeSlide";
+
+        function goToSlide(nextSlideId, direction) {
+            const current = document.getElementById(currentSlide);
+            const next = document.getElementById(nextSlideId);
+
+            if (!current || !next || nextSlideId === currentSlide) {
+                return;
+            }
+
+            current.classList.remove("active");
+            next.classList.add("active");
+
+            currentSlide = nextSlideId;
+
+            window.scrollTo({
+                top: 0,
+                behavior: "auto"
+            });
+        }
+
+        // Đếm số ký tự trong lời tâm sự.
+        const dreamText = document.getElementById("dreamText");
+        const charCount = document.getElementById("charCount");
+        const dreamForm = document.getElementById("dreamForm");
+        const dreamMessage = document.getElementById("dreamMessage");
+
+        dreamText.addEventListener("input", function () {
+            charCount.textContent =
+                dreamText.value.length + " / 2000 ký tự";
+            dreamMessage.classList.remove("visible");
+        });
+
+        // Đây chỉ là minh họa trên giao diện, chưa gửi/lưu dữ liệu.
+        dreamForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const content = dreamText.value.trim();
+
+            if (!content) {
+                dreamMessage.textContent =
+                    "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
+                dreamMessage.classList.add("visible");
+                return;
+            }
+
+            dreamMessage.textContent =
+                "Giao diện đã nhận nội dung bạn nhập. " +
+                "Hiện tại nội dung chưa được lưu hoặc gửi đến người khác.";
+
+            dreamMessage.classList.add("visible");
+        });
+    </script>
 </body>
 </html>
