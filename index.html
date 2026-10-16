@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital World</title>
+    <title>OWL TECH. | My Digital World</title>
 
     <style>
         * {
@@ -28,31 +28,24 @@
             border-bottom: 1px solid #182b49;
         }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .owl-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px #1685ff66);
+        }
+
         .logo {
             color: #42a5ff;
             font-size: 23px;
             font-weight: bold;
         }
-        
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.owl-logo {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 8px #1685ff66);
-}
-
-.logo {
-    color: #42a5ff;
-    font-size: 23px;
-    font-weight: bold;
-}
-
 
         .status {
             color: #75e6b1;
@@ -102,8 +95,11 @@
             background: #1685ff;
             color: white;
             text-decoration: none;
+            border: none;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
             transition: 0.2s;
         }
 
@@ -112,22 +108,64 @@
             transform: translateY(-2px);
         }
 
+        .explore-menu {
+            margin-top: 24px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .explore-menu[hidden],
+        .panel[hidden] {
+            display: none;
+        }
+
+        .explore-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px;
+            background: linear-gradient(135deg, #101c30, #0a1220);
+            border: 1px solid #1c3455;
+            border-radius: 12px;
+            color: #eaf2ff;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .explore-item:hover {
+            border-color: #42a5ff;
+            transform: translateY(-2px);
+        }
+
+        .number {
+            color: #42a5ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .item-title {
+            flex: 1;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            color: #42a5ff;
+            font-size: 22px;
+        }
+
         .panel {
             margin-top: 70px;
             padding: 28px;
             background: linear-gradient(135deg, #101c30, #0a1220);
             border: 1px solid #1c3455;
             border-radius: 16px;
+            min-height: 120px;
         }
 
         .panel h2 {
             margin-bottom: 12px;
             color: #d8e8ff;
-        }
-
-        .panel p {
-            color: #9baec9;
-            line-height: 1.8;
         }
 
         footer {
@@ -143,27 +181,44 @@
                 padding: 20px;
             }
 
+            .owl-logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .status {
+                font-size: 10px;
+            }
+
             main {
-                padding-top: 70px;
+                padding: 70px 20px;
             }
 
             h1 {
                 letter-spacing: -1px;
+            }
+
+            .explore-item {
+                padding: 18px;
+                gap: 14px;
             }
         }
     </style>
 </head>
 
 <body>
-    
-<header>
-    <div class="brand">
-        <img src="owl-logo.png" alt="Logo con cú" class="owl-logo">
-        <div class="logo">OWL TECH.</div>
-    </div>
+    <header>
+        <div class="brand">
+            <img src="owl-logo.png" alt="Logo con cú" class="owl-logo">
+            <div class="logo">OWL TECH.</div>
+        </div>
 
-    <div class="status">● SYSTEM ONLINE</div>
-</header>
+        <div class="status">● SYSTEM ONLINE</div>
+    </header>
 
     <main>
         <div class="tag">WELCOME TO MY WORLD</div>
@@ -179,20 +234,84 @@
             Hành trình công nghệ của tôi bắt đầu từ đây.
         </p>
 
-        <a class="button" href="#about">Khám phá thêm →</a>
+        <button class="button" id="exploreButton" type="button"
+                aria-expanded="false" aria-controls="exploreMenu">
+            Khám phá thêm →
+        </button>
 
-        <section class="panel" id="about">
-            <h2>01 / About this project</h2>
-            <p>
-                Một dự án đang được phát triển.
-                Giao diện này là bước khởi đầu cho hành trình
-                xây dựng những sản phẩm công nghệ của riêng tôi.
-            </p>
+        <div id="exploreMenu" class="explore-menu" hidden>
+            <a class="explore-item" href="#tam-su">
+                <span class="number">01</span>
+                <span class="item-title">Góc Tâm Sự</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="explore-item" href="#muc-02">
+                <span class="number">02</span>
+                <span class="item-title">Mục 02</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="explore-item" href="#muc-03">
+                <span class="number">03</span>
+                <span class="item-title">Mục 03</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <section class="panel" id="tam-su" hidden>
+            <h2>01 / Góc Tâm Sự</h2>
+        </section>
+
+        <section class="panel" id="muc-02" hidden>
+            <h2>02</h2>
+        </section>
+
+        <section class="panel" id="muc-03" hidden>
+            <h2>03</h2>
         </section>
     </main>
 
     <footer>
         © 2026 My Digital World · Built with curiosity.
     </footer>
+
+    <script>
+        const exploreButton = document.getElementById("exploreButton");
+        const exploreMenu = document.getElementById("exploreMenu");
+
+        exploreButton.addEventListener("click", function () {
+            const isOpening = exploreMenu.hidden;
+
+            exploreMenu.hidden = !isOpening;
+
+            exploreButton.setAttribute(
+                "aria-expanded",
+                String(isOpening)
+            );
+
+            exploreButton.textContent = isOpening
+                ? "Thu gọn ↑"
+                : "Khám phá thêm →";
+        });
+
+        document.querySelectorAll(".explore-item").forEach(function (item) {
+            item.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const targetId = item.getAttribute("href");
+                const target = document.querySelector(targetId);
+
+                if (target) {
+                    target.hidden = false;
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
