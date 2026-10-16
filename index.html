@@ -99,7 +99,7 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
     <h1>Khám phá <span>thêm.</span></h1>
     <div class="explore-menu">
         <button class="explore-item" type="button" onclick="goToSlide('dreamSlide','forward')"><span class="number">01</span><span class="item-title">Góc Tâm Sự</span><span class="arrow">→</span></button>
-        <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Mục 02</span><span class="arrow">→</span></button>
+        <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Cảnh báo sử dụng điện thoại</span><span class="arrow">→</span></button>
         <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Mục 03</span><span class="arrow">→</span></button>
     </div>
 </div>
@@ -131,17 +131,64 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 </section>
 
 <!-- SLIDE 4 -->
+
 <section class="slide" id="slide02">
-<div class="container">
-    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
-        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="backGradient3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
-        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient3)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <div class="container">
+    <button class="back-button" type="button"
+      onclick="goToSlide('exploreSlide','back')"
+      aria-label="Quay lại mục khám phá">
+      <svg class="back-icon" viewBox="0 0 1024 1024"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M415 300 V205 L210 330 L415 455 V365
+        C620 350 755 415 760 535 C765 650 660 690 490 715
+        C680 700 800 640 800 525 C800 390 650 290 415 300 Z"
+        fill="none" stroke="#42a5ff" stroke-width="18"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
-    <div class="tag">02 / EXPLORE</div>
-    <div class="content-panel"><h2>Mục 02</h2><p>Khu vực này đang được phát triển. Những ý tưởng mới sẽ được bổ sung tại đây.</p></div>
-</div>
+
+    <div class="tag">02 / MY PROJECT</div>
+
+    <h1>Cảnh báo <span>sử dụng điện thoại.</span></h1>
+
+    <p class="description">
+      Một dự án ứng dụng trí tuệ nhân tạo nhằm hỗ trợ phát hiện
+      hành vi sử dụng điện thoại và đưa ra cảnh báo khi cần thiết.
+    </p>
+
+    <div class="content-panel">
+      <h2>OWL TECH · AI SAFETY SYSTEM</h2>
+
+      <p>
+        Hệ thống sử dụng camera và các mô hình AI để phân tích
+        hình ảnh, hỗ trợ phát hiện điện thoại và dấu hiệu buồn ngủ.
+        Khi phát hiện tình huống cần chú ý, hệ thống có thể đưa ra
+        cảnh báo theo cấu hình của chương trình.
+      </p>
+
+      <div style="margin-top:24px;display:grid;gap:14px">
+        <div class="explore-item" style="cursor:default">
+          <span class="number">01</span>
+          <span class="item-title">Phát hiện điện thoại bằng AI</span>
+        </div>
+
+        <div class="explore-item" style="cursor:default">
+          <span class="number">02</span>
+          <span class="item-title">Theo dõi dấu hiệu buồn ngủ</span>
+        </div>
+
+        <div class="explore-item" style="cursor:default">
+          <span class="number">03</span>
+          <span class="item-title">Cảnh báo bằng âm thanh</span>
+        </div>
+      </div>
+
+      <p style="margin-top:24px">
+        <strong style="color:#42a5ff">Trạng thái:</strong>
+        Dự án cá nhân đang được phát triển.
+      </p>
+    </div>
+  </div>
 </section>
 
 <!-- SLIDE 5 -->
