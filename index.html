@@ -120,8 +120,8 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
         <p>Có những điều không dễ nói thành lời. Đây là nơi bạn có thể viết ra suy nghĩ của mình.</p>
         <form class="dream-form" id="dreamForm">
             <label for="dreamText">Lời tâm sự của bạn</label>
-            <textarea id="dreamText" maxlength="2000" placeholder="Viết lời tâm sự của bạn tại đây..." required></textarea>
-            <div class="form-meta"><span>Không cần ghi tên</span><span id="charCount">0 / 2000 ký tự</span></div>
+            <textarea id="dreamText" placeholder="Viết lời tâm sự của bạn tại đây..." required></textarea>
+            <div class="form-meta"><span>Không cần ghi tên</span><span id="charCount">0 ký tự</span></div>
             <button class="button" type="submit">Gửi tâm sự</button>
             <p class="form-note">Vui lòng không ghi thông tin cá nhân nhạy cảm.</p>
             <div class="dream-message" id="dreamMessage" role="status" aria-live="polite"></div>
@@ -221,7 +221,7 @@ const submitButton = dreamForm.querySelector('button[type="submit"]');
 
 // Đếm ký tự
 dreamText.addEventListener("input", function () {
-    charCount.textContent = dreamText.value.length + " / 2000 ký tự";
+    charCount.textContent = dreamText.value.length + " ký tự";
     dreamMessage.classList.remove("visible");
 });
 
@@ -233,12 +233,6 @@ dreamForm.addEventListener("submit", async function (event) {
 
     if (!content) {
         dreamMessage.textContent = "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
-        dreamMessage.classList.add("visible");
-        return;
-    }
-
-    if (content.length > 2000) {
-        dreamMessage.textContent = "Lời tâm sự không được vượt quá 2000 ký tự.";
         dreamMessage.classList.add("visible");
         return;
     }
