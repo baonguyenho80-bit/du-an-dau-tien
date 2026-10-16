@@ -2,225 +2,253 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWL TECH. | My Digital World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWL TECH. | My Digital World</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #070b14;
-            color: #eaf2ff;
-            min-height: 100vh;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #070b14;
+    color: #eaf2ff;
+    min-height: 100vh;
+}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 8%;
-            border-bottom: 1px solid #182b49;
-        }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    border-bottom: 1px solid #182b49;
+}
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        .owl-logo {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px #1685ff66);
-        }
+.owl-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
 
-        .logo {
-            color: #42a5ff;
-            font-size: 23px;
-            font-weight: bold;
-        }
+.logo {
+    color: #42a5ff;
+    font-size: 23px;
+    font-weight: bold;
+}
 
-        .status {
-            color: #75e6b1;
-            font-size: 13px;
-        }
+.status {
+    color: #75e6b1;
+    font-size: 13px;
+}
 
-        main {
-            max-width: 1000px;
-            margin: auto;
-            padding: 100px 24px;
-        }
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 80px 24px;
+}
 
-        .tag {
-            display: inline-block;
-            color: #42a5ff;
-            border: 1px solid #24558b;
-            background: #0b1b30;
-            padding: 9px 14px;
-            border-radius: 20px;
-            margin-bottom: 28px;
-            font-size: 13px;
-        }
+.screen {
+    display: none;
+    animation: appear 0.35s ease;
+}
 
-        h1 {
-            font-size: clamp(42px, 8vw, 76px);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
+.screen.active {
+    display: block;
+}
 
-        h1 span {
-            color: #42a5ff;
-            text-shadow: 0 0 35px #147de055;
-        }
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .description {
-            color: #9baec9;
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 36px;
-        }
+.tag {
+    display: inline-block;
+    color: #42a5ff;
+    border: 1px solid #24558b;
+    background: #0b1b30;
+    padding: 9px 14px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+}
 
-        .button {
-            display: inline-block;
-            padding: 14px 22px;
-            background: #1685ff;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
 
-        .button:hover {
-            background: #46a0ff;
-            transform: translateY(-2px);
-        }
+h1 span {
+    color: #42a5ff;
+    text-shadow: 0 0 35px #147de055;
+}
 
-        .explore-menu {
-            margin-top: 24px;
-            display: grid;
-            gap: 14px;
-        }
+.description {
+    color: #9baec9;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 36px;
+}
 
-        .explore-menu[hidden],
-        .panel[hidden] {
-            display: none;
-        }
+.button {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #1685ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        .explore-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 22px;
-            background: linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid #1c3455;
-            border-radius: 12px;
-            color: #eaf2ff;
-            text-decoration: none;
-            transition: 0.2s;
-        }
+.button:hover {
+    background: #46a0ff;
+    transform: translateY(-2px);
+}
 
-        .explore-item:hover {
-            border-color: #42a5ff;
-            transform: translateY(-2px);
-        }
+.back-button {
+    background: transparent;
+    border: 1px solid #24558b;
+    color: #8ecaff;
+    margin-bottom: 30px;
+}
 
-        .number {
-            color: #42a5ff;
-            font-size: 22px;
-            font-weight: bold;
-        }
+.back-button:hover {
+    background: #102846;
+}
 
-        .item-title {
-            flex: 1;
-            font-size: 17px;
-            font-weight: bold;
-        }
+.explore-menu {
+    display: grid;
+    gap: 16px;
+    margin-top: 30px;
+}
 
-        .arrow {
-            color: #42a5ff;
-            font-size: 22px;
-        }
+.explore-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px;
+    background: linear-gradient(135deg, #101c30, #0a1220);
+    border: 1px solid #1c3455;
+    border-radius: 14px;
+    color: #eaf2ff;
+    text-decoration: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
 
-        .panel {
-            margin-top: 70px;
-            padding: 28px;
-            background: linear-gradient(135deg, #101c30, #0a1220);
-            border: 1px solid #1c3455;
-            border-radius: 16px;
-            min-height: 120px;
-        }
+.explore-item:hover {
+    border-color: #42a5ff;
+    transform: translateY(-3px);
+}
 
-        .panel h2 {
-            margin-bottom: 12px;
-            color: #d8e8ff;
-        }
+.number {
+    color: #42a5ff;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-        footer {
-            text-align: center;
-            padding: 28px;
-            border-top: 1px solid #182b49;
-            color: #657b98;
-            font-size: 13px;
-        }
+.item-title {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        @media (max-width: 600px) {
-            header {
-                padding: 20px;
-            }
+.arrow {
+    color: #42a5ff;
+    font-size: 24px;
+}
 
-            .owl-logo {
-                width: 36px;
-                height: 36px;
-            }
+.panel {
+    margin-top: 25px;
+    padding: 28px;
+    background: linear-gradient(135deg, #101c30, #0a1220);
+    border: 1px solid #1c3455;
+    border-radius: 16px;
+    min-height: 220px;
+}
 
-            .logo {
-                font-size: 19px;
-            }
+.panel h2 {
+    color: #d8e8ff;
+}
 
-            .status {
-                font-size: 10px;
-            }
+footer {
+    text-align: center;
+    padding: 28px;
+    border-top: 1px solid #182b49;
+    color: #657b98;
+    font-size: 13px;
+}
 
-            main {
-                padding: 70px 20px;
-            }
+@media (max-width: 600px) {
+    header {
+        padding: 18px 20px;
+    }
 
-            h1 {
-                letter-spacing: -1px;
-            }
+    .owl-logo {
+        width: 32px;
+        height: 32px;
+    }
 
-            .explore-item {
-                padding: 18px;
-                gap: 14px;
-            }
-        }
-    </style>
+    .logo {
+        font-size: 18px;
+    }
+
+    .status {
+        font-size: 10px;
+    }
+
+    main {
+        padding: 60px 20px;
+    }
+
+    h1 {
+        letter-spacing: -1px;
+    }
+
+    .explore-item {
+        padding: 20px;
+        gap: 14px;
+    }
+}
+</style>
 </head>
 
 <body>
-    <header>
-        <div class="brand">
-            <img src="owl-logo.png" alt="Logo con cú" class="owl-logo">
-            <div class="logo">OWL TECH.</div>
-        </div>
 
-        <div class="status">● SYSTEM ONLINE</div>
-    </header>
+<header>
+    <div class="brand">
+        <img src="owl-logo.png" alt="Logo con cú" class="owl-logo">
+        <div class="logo">OWL TECH.</div>
+    </div>
 
-    <main>
+    <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<main>
+
+    <!-- MÀN HÌNH 1: TRANG CHỦ -->
+    <section class="screen active" id="homeScreen">
         <div class="tag">WELCOME TO MY WORLD</div>
 
         <h1>
@@ -234,84 +262,98 @@
             Hành trình công nghệ của tôi bắt đầu từ đây.
         </p>
 
-        <button class="button" id="exploreButton" type="button"
-                aria-expanded="false" aria-controls="exploreMenu">
+        <button class="button" onclick="showScreen('exploreScreen')">
             Khám phá thêm →
         </button>
+    </section>
 
-        <div id="exploreMenu" class="explore-menu" hidden>
-            <a class="explore-item" href="#tam-su">
+    <!-- MÀN HÌNH 2: DANH SÁCH KHÁM PHÁ -->
+    <section class="screen" id="exploreScreen">
+        <button class="button back-button" onclick="showScreen('homeScreen')">
+            ← Quay lại
+        </button>
+
+        <div class="tag">EXPLORE</div>
+
+        <h1>Khám phá <span>thêm.</span></h1>
+
+        <div class="explore-menu">
+            <div class="explore-item" onclick="showScreen('dreamScreen')">
                 <span class="number">01</span>
                 <span class="item-title">Góc Tâm Sự</span>
                 <span class="arrow">→</span>
-            </a>
+            </div>
 
-            <a class="explore-item" href="#muc-02">
+            <div class="explore-item" onclick="showScreen('screen02')">
                 <span class="number">02</span>
                 <span class="item-title">Mục 02</span>
                 <span class="arrow">→</span>
-            </a>
+            </div>
 
-            <a class="explore-item" href="#muc-03">
+            <div class="explore-item" onclick="showScreen('screen03')">
                 <span class="number">03</span>
                 <span class="item-title">Mục 03</span>
                 <span class="arrow">→</span>
-            </a>
+            </div>
         </div>
+    </section>
 
-        <section class="panel" id="tam-su" hidden>
+    <!-- MÀN HÌNH 3: GÓC TÂM SỰ -->
+    <section class="screen" id="dreamScreen">
+        <button class="button back-button" onclick="showScreen('exploreScreen')">
+            ← Quay lại
+        </button>
+
+        <section class="panel">
             <h2>01 / Góc Tâm Sự</h2>
         </section>
+    </section>
 
-        <section class="panel" id="muc-02" hidden>
+    <!-- MÀN HÌNH 4: MỤC 02 -->
+    <section class="screen" id="screen02">
+        <button class="button back-button" onclick="showScreen('exploreScreen')">
+            ← Quay lại
+        </button>
+
+        <section class="panel">
             <h2>02</h2>
         </section>
+    </section>
 
-        <section class="panel" id="muc-03" hidden>
+    <!-- MÀN HÌNH 5: MỤC 03 -->
+    <section class="screen" id="screen03">
+        <button class="button back-button" onclick="showScreen('exploreScreen')">
+            ← Quay lại
+        </button>
+
+        <section class="panel">
             <h2>03</h2>
         </section>
-    </main>
+    </section>
 
-    <footer>
-        © 2026 My Digital World · Built with curiosity.
-    </footer>
+</main>
 
-    <script>
-        const exploreButton = document.getElementById("exploreButton");
-        const exploreMenu = document.getElementById("exploreMenu");
+<footer>
+    © 2026 My Digital World · Built with curiosity.
+</footer>
 
-        exploreButton.addEventListener("click", function () {
-            const isOpening = exploreMenu.hidden;
+<script>
+function showScreen(screenId) {
+    document.querySelectorAll(".screen").forEach(function(screen) {
+        screen.classList.remove("active");
+    });
 
-            exploreMenu.hidden = !isOpening;
+    const targetScreen = document.getElementById(screenId);
 
-            exploreButton.setAttribute(
-                "aria-expanded",
-                String(isOpening)
-            );
-
-            exploreButton.textContent = isOpening
-                ? "Thu gọn ↑"
-                : "Khám phá thêm →";
+    if (targetScreen) {
+        targetScreen.classList.add("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
+    }
+}
+</script>
 
-        document.querySelectorAll(".explore-item").forEach(function (item) {
-            item.addEventListener("click", function (event) {
-                event.preventDefault();
-
-                const targetId = item.getAttribute("href");
-                const target = document.querySelector(targetId);
-
-                if (target) {
-                    target.hidden = false;
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
