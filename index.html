@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -63,6 +62,31 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 .back-button{width:70px;height:62px}.explore-item{padding:19px;gap:12px}.item-title{font-size:16px}.content-panel{padding:20px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Cần gạt kiểu phanh tay công nghệ */
+.lever-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+.lever-card{position:relative;min-width:0;padding:22px 18px 20px;background:linear-gradient(145deg,#101e32,#080f1d);border:1px solid #294466;border-radius:16px;overflow:hidden}
+.lever-card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#42a5ff,#c05cff,transparent);opacity:.8}
+.lever-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.lever-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid #2c4c72;border-radius:12px;background:#0b1b30;color:#42a5ff;font-size:20px}
+.lever-name{font-weight:bold;line-height:1.4}
+.lever-subtitle{color:#9baec9;font-size:13px;line-height:1.5;margin-top:4px}
+.lever-stage{position:relative;height:190px;display:flex;align-items:flex-end;justify-content:center;perspective:600px;margin:2px 0 8px}
+.lever-base{position:absolute;bottom:10px;width:132px;height:48px;border:1px solid #365779;border-radius:18px 18px 13px 13px;background:linear-gradient(150deg,#293b52,#080d16 72%);box-shadow:0 12px 22px #0008,inset 0 1px 2px #ffffff22}
+.lever-base::before{content:"";position:absolute;left:17px;right:17px;top:8px;height:5px;border-radius:99px;background:#42a5ff33;box-shadow:0 0 12px #42a5ff22}
+.lever-pivot{position:absolute;bottom:34px;width:74px;height:38px;border-radius:50%;background:radial-gradient(ellipse at 35% 25%,#7088a2,#18273b 60%,#080d16);border:1px solid #47617d;box-shadow:inset 0 2px 5px #ffffff20}
+.lever-control{position:absolute;bottom:45px;width:56px;height:132px;border:0;background:transparent;cursor:pointer;transform-origin:50% 91%;transform:rotate(29deg);transition:transform .42s cubic-bezier(.2,.8,.2,1),filter .3s;filter:drop-shadow(0 0 5px #42a5ff22);z-index:2}
+.lever-control[aria-pressed="true"]{transform:rotate(-20deg);filter:drop-shadow(0 0 10px #42a5ff66)}
+.lever-shaft{position:absolute;left:23px;bottom:8px;width:10px;height:104px;border:1px solid #68819b;border-radius:8px;background:linear-gradient(90deg,#29394d,#a5b7c9 45%,#26374a);box-shadow:inset 0 0 3px #fff5}
+.lever-handle{position:absolute;left:7px;top:0;width:42px;height:35px;border:1px solid #6b829c;border-radius:13px 13px 10px 10px;background:linear-gradient(135deg,#53677d 0%,#17263a 38%,#080d16 78%);box-shadow:inset 0 2px 3px #ffffff55,0 5px 12px #0008}
+.lever-handle::after{content:"";position:absolute;left:7px;right:7px;top:6px;height:3px;border-radius:99px;background:#8ba4be66}
+.lever-control:focus-visible{outline:2px solid #42a5ff;outline-offset:5px;border-radius:14px}
+.lever-status{display:flex;align-items:center;justify-content:center;gap:8px;color:#9baec9;font-size:13px}
+.status-light{width:9px;height:9px;border-radius:50%;background:#65758b;box-shadow:0 0 0 4px #65758b18;transition:background .25s,box-shadow .25s}
+.lever-card.is-on .status-light{background:#75e6b1;box-shadow:0 0 12px #75e6b1,0 0 0 4px #75e6b122}
+.lever-card.is-on .lever-icon{color:#75e6b1;border-color:#28644f}
+.lever-hint{text-align:center;color:#7185a2;font-size:12px;margin-top:12px}
+@media(max-width:620px){.lever-list{grid-template-columns:1fr}.lever-card{padding:20px 16px}.lever-stage{height:175px}}
 </style>
 </head>
 
@@ -130,89 +154,100 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 </div>
 </section>
 
-<!-- SLIDE 4 -->
-
-
+<!-- SLIDE 4: CẢNH BÁO THÔNG MINH -->
 <section class="slide" id="slide02">
-  <div class="container">
-    <button class="back-button" type="button"
-      onclick="goToSlide('exploreSlide','back')"
-      aria-label="Quay lại mục khám phá">
-      <svg class="back-icon" viewBox="0 0 1024 1024">
-        <path d="M415 300 V205 L210 330 L415 455 V365
-        C620 350 755 415 760 535 C765 650 660 690 490 715
-        C680 700 800 640 800 525 C800 390 650 290 415 300 Z"
-        fill="none" stroke="#42a5ff" stroke-width="18"
-        stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+<div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá">
+        <svg class="back-icon" viewBox="0 0 1024 1024">
+            <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="#42a5ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
 
     <div class="tag">02 / AI SAFETY SYSTEM</div>
     <h1>Cảnh báo <span>thông minh.</span></h1>
     <p class="description">
-      Chọn những tính năng em muốn sử dụng. Cả hai tính năng
-      đều được bật sẵn khi mở bảng điều khiển.
+        Chọn những tính năng em muốn sử dụng. Cả hai tính năng
+        đều được bật sẵn khi mở bảng điều khiển.
     </p>
 
     <div class="content-panel">
-      <h2>Cấu hình hệ thống</h2>
+        <h2>Cấu hình hệ thống</h2>
+        <p>Nhấp vào cần gạt để chuyển giữa trạng thái bật và tắt. Hai tính năng được điều khiển độc lập.</p>
 
-      <label style="display:flex;align-items:center;gap:14px;
-        padding:18px;margin:14px 0;background:#0a1424;
-        border:1px solid #294466;border-radius:10px;cursor:pointer">
-        <input id="enableSleep" type="checkbox" checked
-          style="width:20px;height:20px;accent-color:#42a5ff">
-        <span>
-          <strong>Phát hiện buồn ngủ</strong><br>
-          <span style="color:#9baec9;font-size:14px">
-            Theo dõi dấu hiệu buồn ngủ qua camera
-          </span>
-        </span>
-      </label>
+        <div class="lever-list">
+            <article class="lever-card is-on" id="sleepLeverCard">
+                <div class="lever-top">
+                    <div class="lever-icon" aria-hidden="true">◉</div>
+                    <div>
+                        <div class="lever-name">Phát hiện buồn ngủ</div>
+                        <div class="lever-subtitle">Theo dõi dấu hiệu buồn ngủ qua camera</div>
+                    </div>
+                </div>
+                <div class="lever-stage">
+                    <div class="lever-base" aria-hidden="true"></div>
+                    <div class="lever-pivot" aria-hidden="true"></div>
+                    <button class="lever-control" id="enableSleep" type="button" aria-label="Bật hoặc tắt phát hiện buồn ngủ" aria-pressed="true" title="Nhấp để bật hoặc tắt phát hiện buồn ngủ">
+                        <span class="lever-shaft" aria-hidden="true"></span>
+                        <span class="lever-handle" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="lever-status"><span class="status-light" aria-hidden="true"></span><span id="sleepLeverState">ĐANG BẬT</span></div>
+                <div class="lever-hint">NHẤP ĐỂ GẠT CẦN</div>
+            </article>
 
-      <label style="display:flex;align-items:center;gap:14px;
-        padding:18px;margin:14px 0;background:#0a1424;
-        border:1px solid #294466;border-radius:10px;cursor:pointer">
-        <input id="enablePhone" type="checkbox" checked
-          style="width:20px;height:20px;accent-color:#42a5ff">
-        <span>
-          <strong>Phát hiện sử dụng điện thoại</strong><br>
-          <span style="color:#9baec9;font-size:14px">
-            Nhận diện điện thoại qua camera
-          </span>
-        </span>
-      </label>
+            <article class="lever-card is-on" id="phoneLeverCard">
+                <div class="lever-top">
+                    <div class="lever-icon" aria-hidden="true">▣</div>
+                    <div>
+                        <div class="lever-name">Phát hiện sử dụng điện thoại</div>
+                        <div class="lever-subtitle">Nhận diện điện thoại qua camera</div>
+                    </div>
+                </div>
+                <div class="lever-stage">
+                    <div class="lever-base" aria-hidden="true"></div>
+                    <div class="lever-pivot" aria-hidden="true"></div>
+                    <button class="lever-control" id="enablePhone" type="button" aria-label="Bật hoặc tắt phát hiện sử dụng điện thoại" aria-pressed="true" title="Nhấp để bật hoặc tắt phát hiện sử dụng điện thoại">
+                        <span class="lever-shaft" aria-hidden="true"></span>
+                        <span class="lever-handle" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="lever-status"><span class="status-light" aria-hidden="true"></span><span id="phoneLeverState">ĐANG BẬT</span></div>
+                <div class="lever-hint">NHẤP ĐỂ GẠT CẦN</div>
+            </article>
+        </div>
 
-      <p id="aiStatus" role="status"
-        style="margin-top:20px;color:#9baec9;line-height:1.8">
-        Đã chọn cả hai tính năng. Đang chờ kết nối hệ thống AI.
-      </p>
+        <p id="aiStatus" role="status" aria-live="polite" style="margin-top:20px;color:#9baec9;line-height:1.8">
+            Đã chọn cả hai tính năng. Đang chờ kết nối hệ thống AI.
+        </p>
     </div>
-  </div>
+</div>
 </section>
+
 <!-- SLIDE 5 -->
 <section class="slide" id="slide03">
 <div class="container">
     <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
         <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="backGradient4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
-        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient4)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="backGradient4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
+            <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient4)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
     <div class="tag">03 / EXPLORE</div>
-    <div class="content-panel"><h2>Mục 03</h2><p>Khu vực này đang được phát triển. Hãy quay lại sau để khám phá thêm.</p></div>
+    <div class="content-panel">
+        <h2>Mục 03</h2>
+        <p>Khu vực này đang được phát triển. Hãy quay lại sau để khám phá thêm.</p>
+    </div>
 </div>
 </section>
 
 <footer>© 2026 OWL TECH. · Built with curiosity.</footer>
-
 <!-- Thư viện Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 /*
-  THAY HAI GIÁ TRỊ BÊN DƯỚI BẰNG THÔNG TIN DỰ ÁN CỦA EM.
-  Chỉ dùng Project URL và Publishable key.
-  TUYỆT ĐỐI KHÔNG ĐƯA SECRET KEY VÀO WEBSITE CÔNG KHAI.
+  Chỉ sử dụng Project URL và Publishable key.
+  Không đưa Secret key vào website công khai.
 */
 const SUPABASE_URL = "https://viwvmvyczusosmrprdyf.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Vq2aOHQyMRNmDGQgz_v5EQ_bloWffl0";
@@ -231,7 +266,10 @@ if (
     );
 }
 
-// Chuyển slide
+// ==============================
+// CHUYỂN ĐỔI CÁC TRANG
+// ==============================
+
 let currentSlide = "homeSlide";
 let isSwitching = false;
 
@@ -239,18 +277,27 @@ function goToSlide(nextSlideId, direction = "forward") {
     const current = document.getElementById(currentSlide);
     const next = document.getElementById(nextSlideId);
 
-    if (!current || !next || current === next || isSwitching) return;
+    if (!current || !next || current === next || isSwitching) {
+        return;
+    }
 
     isSwitching = true;
+
     current.classList.remove("active", "from-left", "from-right");
     next.classList.remove("from-left", "from-right");
+
     next.classList.add(
         "active",
         direction === "back" ? "from-left" : "from-right"
     );
 
     currentSlide = nextSlideId;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+    });
 
     setTimeout(function () {
         next.classList.remove("from-left", "from-right");
@@ -258,14 +305,17 @@ function goToSlide(nextSlideId, direction = "forward") {
     }, 380);
 }
 
-// Lấy các thành phần biểu mẫu
+// ==============================
+// GÓC TÂM SỰ
+// ==============================
+
 const dreamText = document.getElementById("dreamText");
 const charCount = document.getElementById("charCount");
 const dreamForm = document.getElementById("dreamForm");
 const dreamMessage = document.getElementById("dreamMessage");
 const submitButton = dreamForm.querySelector('button[type="submit"]');
 
-// Đếm ký tự
+// Đếm số ký tự
 dreamText.addEventListener("input", function () {
     charCount.textContent = dreamText.value.length + " ký tự";
     dreamMessage.classList.remove("visible");
@@ -278,7 +328,9 @@ dreamForm.addEventListener("submit", async function (event) {
     const content = dreamText.value.trim();
 
     if (!content) {
-        dreamMessage.textContent = "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
+        dreamMessage.textContent =
+            "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
+
         dreamMessage.classList.add("visible");
         return;
     }
@@ -286,6 +338,7 @@ dreamForm.addEventListener("submit", async function (event) {
     if (!supabaseClient) {
         dreamMessage.textContent =
             "Website chưa được cấu hình kết nối. Vui lòng thử lại sau.";
+
         dreamMessage.classList.add("visible");
         return;
     }
@@ -299,54 +352,121 @@ dreamForm.addEventListener("submit", async function (event) {
             .from("confessions")
             .insert([{ content: content }]);
 
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
 
         dreamMessage.textContent =
             "Gửi tâm sự thành công. Cảm ơn bạn đã chia sẻ.";
+
         dreamMessage.classList.add("visible");
 
         dreamText.value = "";
         charCount.textContent = "0 / 2000 ký tự";
+
     } catch (error) {
         console.error("Lỗi gửi tâm sự:", error);
-        alert(JSON.stringify(error));
+
         dreamMessage.textContent =
             "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
+
         dreamMessage.classList.add("visible");
+
     } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Gửi tâm sự";
     }
 });
 
+// ==============================
+// HAI CẦN GẠT PHANH TAY
+// ==============================
+
 const enableSleep = document.getElementById("enableSleep");
 const enablePhone = document.getElementById("enablePhone");
 const aiStatus = document.getElementById("aiStatus");
 
+const sleepLeverCard = document.getElementById("sleepLeverCard");
+const phoneLeverCard = document.getElementById("phoneLeverCard");
+
+const sleepLeverState = document.getElementById("sleepLeverState");
+const phoneLeverState = document.getElementById("phoneLeverState");
+
+// Mặc định cả hai tính năng đều bật
+const aiFeatures = {
+    sleep: true,
+    phone: true
+};
+
+// Cập nhật hình ảnh và trạng thái của cần gạt
+function setLever(button, card, stateLabel, isOn) {
+    button.setAttribute("aria-pressed", String(isOn));
+
+    card.classList.toggle("is-on", isOn);
+
+    stateLabel.textContent = isOn
+        ? "ĐANG BẬT"
+        : "ĐANG TẮT";
+}
+
+// Cập nhật trạng thái trên giao diện
 function updateAIFeatures() {
     const selected = [];
 
-    if (enableSleep.checked) {
+    if (aiFeatures.sleep) {
         selected.push("phát hiện buồn ngủ");
     }
 
-    if (enablePhone.checked) {
+    if (aiFeatures.phone) {
         selected.push("phát hiện điện thoại");
     }
 
+    setLever(
+        enableSleep,
+        sleepLeverCard,
+        sleepLeverState,
+        aiFeatures.sleep
+    );
+
+    setLever(
+        enablePhone,
+        phoneLeverCard,
+        phoneLeverState,
+        aiFeatures.phone
+    );
+
     if (selected.length === 0) {
-        aiStatus.textContent = "Cả hai tính năng đang được tắt.";
+        aiStatus.textContent =
+            "Cả hai tính năng đang được tắt.";
+
+    } else if (selected.length === 2) {
+        aiStatus.textContent =
+            "Đã chọn cả hai tính năng. Giao diện đã sẵn sàng; " +
+            "cần kết nối API/backend để áp dụng lựa chọn vào hệ thống AI.";
+
     } else {
         aiStatus.textContent =
-            "Đã chọn: " + selected.join(" và ") +
-            ". Các lựa chọn sẽ được áp dụng khi kết nối hệ thống AI.";
+            "Đang bật: " + selected.join(" và ") +
+            ". Lựa chọn hiện được lưu trong giao diện; " +
+            "cần kết nối API/backend để điều khiển hệ thống AI thực tế.";
     }
 }
 
-enableSleep.addEventListener("change", updateAIFeatures);
-enablePhone.addEventListener("change", updateAIFeatures);
+// Nhấp cần gạt buồn ngủ để bật hoặc tắt
+enableSleep.addEventListener("click", function () {
+    aiFeatures.sleep = !aiFeatures.sleep;
+    updateAIFeatures();
+});
 
+// Nhấp cần gạt điện thoại để bật hoặc tắt
+enablePhone.addEventListener("click", function () {
+    aiFeatures.phone = !aiFeatures.phone;
+    updateAIFeatures();
+});
+
+// Khởi tạo giao diện
 updateAIFeatures();
+
 </script>
 </body>
 </html>
