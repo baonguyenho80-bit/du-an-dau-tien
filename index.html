@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -63,20 +64,122 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-/* Chỉ thay hai ô tick bằng cần gạt nhỏ gọn */
-.lever-row{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:10px 0;background:#0a1424;border:1px solid #294466;border-radius:10px}
+/* Cần gạt ngang: trái = tắt, phải = bật */
+.lever-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    margin:10px 0;
+    background:#0a1424;
+    border:1px solid #294466;
+    border-radius:10px;
+}
 .lever-copy{flex:1;min-width:0}
 .lever-copy strong{display:block;margin-bottom:4px}
 .lever-copy small{display:block;color:#9baec9;font-size:13px;line-height:1.45}
-.mini-lever{position:relative;flex:0 0 54px;width:54px;height:76px;border:0;background:transparent;cursor:pointer;transform-origin:50% 90%;padding:0}
-.mini-lever .lever-base{position:absolute;left:7px;bottom:2px;width:40px;height:16px;border:1px solid #365779;border-radius:7px;background:linear-gradient(145deg,#293b52,#080d16);box-shadow:0 4px 8px #0007}
-.mini-lever .lever-pivot{position:absolute;left:17px;bottom:11px;width:20px;height:15px;border-radius:50%;background:radial-gradient(ellipse at 35% 25%,#7088a2,#18273b 65%,#080d16);border:1px solid #47617d}
-.mini-lever .lever-shaft{position:absolute;left:25px;bottom:15px;width:5px;height:44px;border:1px solid #68819b;border-radius:5px;background:linear-gradient(90deg,#29394d,#a5b7c9 45%,#26374a);transform:rotate(25deg);transform-origin:50% 90%;transition:transform .25s ease;box-shadow:inset 0 0 2px #fff5}
-.mini-lever .lever-handle{position:absolute;left:15px;top:4px;width:25px;height:18px;border:1px solid #6b829c;border-radius:7px;background:linear-gradient(135deg,#53677d,#17263a 55%,#080d16);box-shadow:inset 0 1px 2px #ffffff44,0 3px 6px #0008;transform:rotate(25deg);transform-origin:50% 90%;transition:transform .25s ease}
-.mini-lever[aria-pressed="true"] .lever-shaft,.mini-lever[aria-pressed="true"] .lever-handle{transform:rotate(-18deg)}
-.mini-lever[aria-pressed="true"] .lever-handle{box-shadow:0 0 9px #42a5ff66,inset 0 1px 2px #ffffff44}
-.mini-lever:focus-visible{outline:2px solid #42a5ff;outline-offset:3px;border-radius:8px}
-@media(max-width:600px){.lever-row{padding:10px;gap:8px}.lever-copy strong{font-size:14px}.lever-copy small{font-size:12px}.mini-lever{flex-basis:48px;width:48px}}
+.lever-control-wrap{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+
+/* Khung cần gạt */
+.mini-lever{
+    position:relative;
+    display:block;
+    flex:0 0 76px;
+    width:76px;
+    height:38px;
+    padding:0;
+    border:1px solid #365779;
+    border-radius:10px;
+    background:linear-gradient(145deg,#1b2b40,#080d16);
+    box-shadow:inset 0 2px 5px #0008,0 3px 8px #0005;
+    cursor:pointer;
+    overflow:hidden;
+}
+
+/* Đường ray */
+.lever-track{
+    position:absolute;
+    left:8px;
+    right:8px;
+    top:16px;
+    height:5px;
+    border-radius:5px;
+    background:#050a12;
+    border:1px solid #35465c;
+    box-shadow:inset 0 1px 3px #0009;
+}
+
+/* Thân cần gạt */
+.lever-arm{
+    position:absolute;
+    z-index:2;
+    left:15px;
+    top:16px;
+    width:43px;
+    height:5px;
+    border-radius:5px;
+    background:linear-gradient(180deg,#d1deea,#617b98 55%,#2b4057);
+    transform:translateX(0);
+    transition:transform .25s ease;
+    box-shadow:0 0 2px #fff8;
+}
+
+/* Tay cầm */
+.lever-knob{
+    position:absolute;
+    z-index:3;
+    left:8px;
+    top:6px;
+    width:20px;
+    height:24px;
+    border:1px solid #8da2b8;
+    border-radius:6px;
+    background:linear-gradient(135deg,#879bb0,#2c4057 55%,#101a28);
+    box-shadow:inset 0 1px 2px #fff7,0 2px 5px #0009;
+    transform:translateX(0);
+    transition:transform .25s ease;
+}
+.lever-knob::after{
+    content:"";
+    position:absolute;
+    left:4px;
+    right:4px;
+    top:4px;
+    height:2px;
+    border-radius:2px;
+    background:#dce8f466;
+}
+
+/* Bật: thân và tay cầm cùng dịch sang phải */
+.mini-lever[aria-pressed="true"] .lever-arm{transform:translateX(30px)}
+.mini-lever[aria-pressed="true"] .lever-knob{transform:translateX(40px)}
+.mini-lever:focus-visible{outline:2px solid #42a5ff;outline-offset:3px}
+
+/* Đèn báo trạng thái */
+.lever-indicator{
+    width:9px;
+    height:9px;
+    flex:0 0 9px;
+    border-radius:50%;
+    background:#536174;
+    box-shadow:0 0 0 3px #53617422;
+    transition:background .2s,box-shadow .2s;
+}
+.lever-row.is-on .lever-indicator{
+    background:#37f28b;
+    box-shadow:0 0 10px #37f28b,0 0 0 3px #37f28b22;
+}
+.lever-row.is-on{border-color:#28644f}
+
+@media(max-width:600px){
+    .lever-row{padding:10px;gap:8px}
+    .lever-copy strong{font-size:14px}
+    .lever-copy small{font-size:12px}
+    .lever-control-wrap{gap:7px}
+    .mini-lever{flex-basis:70px;width:70px;height:36px}
+    .mini-lever[aria-pressed="true"] .lever-arm{transform:translateX(26px)}
+    .mini-lever[aria-pressed="true"] .lever-knob{transform:translateX(34px)}
+}
 </style>
 </head>
 
@@ -89,7 +192,7 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
     <div class="status">● SYSTEM ONLINE</div>
 </header>
 
-<!-- SLIDE 1 -->
+<!-- TRANG CHỦ -->
 <section class="slide active" id="homeSlide">
 <div class="container">
     <div class="tag">WELCOME TO MY WORLD</div>
@@ -100,7 +203,7 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 </div>
 </section>
 
-<!-- SLIDE 2 -->
+<!-- MỤC KHÁM PHÁ -->
 <section class="slide" id="exploreSlide">
 <div class="container">
     <button class="back-button" type="button" onclick="goToSlide('homeSlide','back')" aria-label="Quay lại trang chủ" title="Quay lại trang chủ">
@@ -114,12 +217,12 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
     <div class="explore-menu">
         <button class="explore-item" type="button" onclick="goToSlide('dreamSlide','forward')"><span class="number">01</span><span class="item-title">Góc Tâm Sự</span><span class="arrow">→</span></button>
         <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Cảnh báo sử dụng điện thoại</span><span class="arrow">→</span></button>
-        <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Mục 03</span><span class="arrow">→</span></button>
+        <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Khám phá thêm</span><span class="arrow">→</span></button>
     </div>
 </div>
 </section>
 
-<!-- SLIDE 3: GÓC TÂM SỰ -->
+<!-- GÓC TÂM SỰ -->
 <section class="slide" id="dreamSlide">
 <div class="container">
     <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
@@ -144,9 +247,9 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 </div>
 </section>
 
-<!-- SLIDE 4: CẢNH BÁO THÔNG MINH -->
+<!-- CẢNH BÁO THÔNG MINH -->
 <section class="slide" id="slide02">
-  <div class="container">
+<div class="container">
     <button class="back-button" type="button"
       onclick="goToSlide('exploreSlide','back')"
       aria-label="Quay lại mục khám phá">
@@ -174,12 +277,18 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
           <strong>Phát hiện buồn ngủ</strong>
           <small>Theo dõi dấu hiệu buồn ngủ qua camera</small>
         </div>
-        <button class="mini-lever" id="enableSleep" type="button" aria-label="Bật hoặc tắt phát hiện buồn ngủ" aria-pressed="true" title="Bật/tắt phát hiện buồn ngủ">
-          <span class="lever-base" aria-hidden="true"></span>
-          <span class="lever-pivot" aria-hidden="true"></span>
-          <span class="lever-shaft" aria-hidden="true"></span>
-          <span class="lever-handle" aria-hidden="true"></span>
-        </button>
+        <div class="lever-control-wrap">
+          <button class="mini-lever" id="enableSleep" type="button"
+            aria-label="Bật hoặc tắt phát hiện buồn ngủ"
+            aria-pressed="true"
+            title="Gạt sang trái để tắt, sang phải để bật">
+            <span class="lever-track" aria-hidden="true"></span>
+            <span class="lever-arm" aria-hidden="true"></span>
+            <span class="lever-knob" aria-hidden="true"></span>
+          </button>
+          <span class="lever-indicator" id="sleepIndicator"
+            aria-label="Trạng thái buồn ngủ"></span>
+        </div>
       </div>
 
       <div class="lever-row">
@@ -187,12 +296,18 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
           <strong>Phát hiện sử dụng điện thoại</strong>
           <small>Nhận diện điện thoại qua camera</small>
         </div>
-        <button class="mini-lever" id="enablePhone" type="button" aria-label="Bật hoặc tắt phát hiện sử dụng điện thoại" aria-pressed="true" title="Bật/tắt phát hiện điện thoại">
-          <span class="lever-base" aria-hidden="true"></span>
-          <span class="lever-pivot" aria-hidden="true"></span>
-          <span class="lever-shaft" aria-hidden="true"></span>
-          <span class="lever-handle" aria-hidden="true"></span>
-        </button>
+        <div class="lever-control-wrap">
+          <button class="mini-lever" id="enablePhone" type="button"
+            aria-label="Bật hoặc tắt phát hiện sử dụng điện thoại"
+            aria-pressed="true"
+            title="Gạt sang trái để tắt, sang phải để bật">
+            <span class="lever-track" aria-hidden="true"></span>
+            <span class="lever-arm" aria-hidden="true"></span>
+            <span class="lever-knob" aria-hidden="true"></span>
+          </button>
+          <span class="lever-indicator" id="phoneIndicator"
+            aria-label="Trạng thái điện thoại"></span>
+        </div>
       </div>
 
       <p id="aiStatus" role="status"
@@ -200,10 +315,10 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
         Đã chọn cả hai tính năng. Đang chờ kết nối hệ thống AI.
       </p>
     </div>
-  </div>
+</div>
 </section>
 
-<!-- SLIDE 5 -->
+<!-- MỤC 03 -->
 <section class="slide" id="slide03">
 <div class="container">
     <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
@@ -221,12 +336,13 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
 </section>
 
 <footer>© 2026 OWL TECH. · Built with curiosity.</footer>
+
 <!-- Thư viện Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /*
   Chỉ sử dụng Project URL và Publishable key.
-  Không đưa Secret key vào website công khai.
+  Tuyệt đối không đưa Secret key vào website công khai.
 */
 const SUPABASE_URL = "https://viwvmvyczusosmrprdyf.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Vq2aOHQyMRNmDGQgz_v5EQ_bloWffl0";
@@ -245,7 +361,7 @@ if (
     );
 }
 
-// Chuyển slide
+/* Chuyển đổi giữa các trang */
 let currentSlide = "homeSlide";
 let isSwitching = false;
 
@@ -272,20 +388,20 @@ function goToSlide(nextSlideId, direction = "forward") {
     }, 380);
 }
 
-// Lấy các thành phần biểu mẫu
+/* Các thành phần của biểu mẫu tâm sự */
 const dreamText = document.getElementById("dreamText");
 const charCount = document.getElementById("charCount");
 const dreamForm = document.getElementById("dreamForm");
 const dreamMessage = document.getElementById("dreamMessage");
 const submitButton = dreamForm.querySelector('button[type="submit"]');
 
-// Đếm ký tự
+/* Đếm số ký tự */
 dreamText.addEventListener("input", function () {
     charCount.textContent = dreamText.value.length + " ký tự";
     dreamMessage.classList.remove("visible");
 });
 
-// Gửi lời tâm sự lên Supabase
+/* Gửi lời tâm sự lên Supabase */
 dreamForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -320,10 +436,9 @@ dreamForm.addEventListener("submit", async function (event) {
         dreamMessage.classList.add("visible");
 
         dreamText.value = "";
-        charCount.textContent = "0 / 2000 ký tự";
+        charCount.textContent = "0 ký tự";
     } catch (error) {
         console.error("Lỗi gửi tâm sự:", error);
-        alert(JSON.stringify(error));
         dreamMessage.textContent =
             "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
         dreamMessage.classList.add("visible");
@@ -333,28 +448,40 @@ dreamForm.addEventListener("submit", async function (event) {
     }
 });
 
-// Hai cần gạt
+/* Điều khiển hai cần gạt */
 const enableSleep = document.getElementById("enableSleep");
 const enablePhone = document.getElementById("enablePhone");
 const aiStatus = document.getElementById("aiStatus");
 
 function updateAIFeatures() {
+    const sleepOn = enableSleep.getAttribute("aria-pressed") === "true";
+    const phoneOn = enablePhone.getAttribute("aria-pressed") === "true";
+
+    const sleepRow = enableSleep.closest(".lever-row");
+    const phoneRow = enablePhone.closest(".lever-row");
+
+    sleepRow.classList.toggle("is-on", sleepOn);
+    phoneRow.classList.toggle("is-on", phoneOn);
+
+    document.getElementById("sleepIndicator").setAttribute(
+        "title",
+        sleepOn ? "Đang bật" : "Đang tắt"
+    );
+
+    document.getElementById("phoneIndicator").setAttribute(
+        "title",
+        phoneOn ? "Đang bật" : "Đang tắt"
+    );
+
     const selected = [];
 
-    if (enableSleep.getAttribute("aria-pressed") === "true") {
-        selected.push("phát hiện buồn ngủ");
-    }
-
-    if (enablePhone.getAttribute("aria-pressed") === "true") {
-        selected.push("phát hiện điện thoại");
-    }
+    if (sleepOn) selected.push("phát hiện buồn ngủ");
+    if (phoneOn) selected.push("phát hiện điện thoại");
 
     if (selected.length === 0) {
         aiStatus.textContent = "Cả hai tính năng đang được tắt.";
     } else {
-        aiStatus.textContent =
-            "Đã chọn: " + selected.join(" và ") +
-            ". Các lựa chọn sẽ được áp dụng khi kết nối hệ thống AI.";
+        aiStatus.textContent = "Đang bật: " + selected.join(" và ") + ".";
     }
 }
 
@@ -373,6 +500,7 @@ enablePhone.addEventListener("click", function () {
     toggleLever(enablePhone);
 });
 
+/* Cập nhật giao diện khi mở trang */
 updateAIFeatures();
 </script>
 </body>
