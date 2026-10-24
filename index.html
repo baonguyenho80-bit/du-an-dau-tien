@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070b14">
 <title>OWL TECH. | My Digital World</title>
-<link rel="icon" href="data:," />
+<link rel="icon" href="data:,">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,7 +35,7 @@ h1 span{color:var(--blue);text-shadow:0 0 35px #147de055}
 .back-button{display:flex;align-items:center;justify-content:center;width:82px;height:72px;margin-bottom:28px;padding:4px;border:1px solid transparent;border-radius:12px;background:transparent;cursor:pointer;transition:.2s}
 .back-button:hover{background:#10213a;transform:translateX(-4px)}
 .back-icon{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 5px #1685ff55)}
-button:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .explore-menu{display:grid;gap:16px}
 .explore-item{display:flex;align-items:center;gap:18px;width:100%;padding:24px;color:#eaf2ff;text-align:left;background:linear-gradient(135deg,#101c30,#0a1220);border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:.25s}
 .explore-item:hover{border-color:var(--blue);transform:translateY(-3px)}
@@ -50,225 +49,173 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outlin
 .dream-form{margin-top:24px}
 .dream-form label{display:block;margin-bottom:10px;font-weight:bold}
 .dream-form textarea{display:block;width:100%;min-height:180px;padding:16px;resize:vertical;background:#080e19;border:1px solid #294466;border-radius:10px;color:#eaf2ff;font-family:inherit;font-size:16px;line-height:1.7}
-.dream-form textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px #1685ff20}
 .dream-form textarea::placeholder{color:#7185a2}
 .form-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:10px 0 18px;color:#8296b3;font-size:13px}
 .form-note{margin-top:15px;color:#8296b3;font-size:13px;line-height:1.7}
 .dream-message{display:none;margin-top:16px;padding:14px;color:#b9ddff;background:#0b1b30;border:1px solid #24558b;border-radius:8px;line-height:1.7}
 .dream-message.visible{display:block}
 footer{text-align:center;padding:25px;border-top:1px solid #182b49;color:#657b98;font-size:13px}
-@media(max-width:600px){
-header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.status{font-size:10px}
-.slide{padding:48px 20px}h1{letter-spacing:-1px}.description{font-size:16px}
-.back-button{width:70px;height:62px}.explore-item{padding:19px;gap:12px}.item-title{font-size:16px}.content-panel{padding:20px}
-}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-/* Cần gạt ngang: trái = tắt, phải = bật */
-.lever-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    margin:10px 0;
-    background:#0a1424;
-    border:1px solid #294466;
-    border-radius:10px;
-}
+/* Cần gạt AI */
+.lever-row{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:10px 0;background:#0a1424;border:1px solid #294466;border-radius:10px}
 .lever-copy{flex:1;min-width:0}
 .lever-copy strong{display:block;margin-bottom:4px}
 .lever-copy small{display:block;color:#9baec9;font-size:13px;line-height:1.45}
 .lever-control-wrap{display:flex;align-items:center;gap:10px;flex:0 0 auto}
-
-/* Khung cần gạt */
-.mini-lever{
-    position:relative;
-    display:block;
-    flex:0 0 76px;
-    width:76px;
-    height:38px;
-    padding:0;
-    border:1px solid #365779;
-    border-radius:10px;
-    background:linear-gradient(145deg,#1b2b40,#080d16);
-    box-shadow:inset 0 2px 5px #0008,0 3px 8px #0005;
-    cursor:pointer;
-    overflow:hidden;
-}
-
-/* Đường ray */
-.lever-track{
-    position:absolute;
-    left:8px;
-    right:8px;
-    top:16px;
-    height:5px;
-    border-radius:5px;
-    background:#050a12;
-    border:1px solid #35465c;
-    box-shadow:inset 0 1px 3px #0009;
-}
-
-/* Thân cần gạt */
-.lever-arm{
-    position:absolute;
-    z-index:2;
-    left:15px;
-    top:16px;
-    width:43px;
-    height:5px;
-    border-radius:5px;
-    background:linear-gradient(180deg,#d1deea,#617b98 55%,#2b4057);
-    transform:translateX(0);
-    transition:transform .25s ease;
-    box-shadow:0 0 2px #fff8;
-}
-
-/* Tay cầm */
-.lever-knob{
-    position:absolute;
-    z-index:3;
-    left:8px;
-    top:6px;
-    width:20px;
-    height:24px;
-    border:1px solid #8da2b8;
-    border-radius:6px;
-    background:linear-gradient(135deg,#879bb0,#2c4057 55%,#101a28);
-    box-shadow:inset 0 1px 2px #fff7,0 2px 5px #0009;
-    transform:translateX(0);
-    transition:transform .25s ease;
-}
-.lever-knob::after{
-    content:"";
-    position:absolute;
-    left:4px;
-    right:4px;
-    top:4px;
-    height:2px;
-    border-radius:2px;
-    background:#dce8f466;
-}
-
-/* Bật: thân và tay cầm cùng dịch sang phải */
+.mini-lever{position:relative;display:block;flex:0 0 76px;width:76px;height:38px;padding:0;border:1px solid #365779;border-radius:10px;background:linear-gradient(145deg,#1b2b40,#080d16);box-shadow:inset 0 2px 5px #0008,0 3px 8px #0005;cursor:pointer;overflow:hidden}
+.lever-track{position:absolute;left:8px;right:8px;top:16px;height:5px;border-radius:5px;background:#050a12;border:1px solid #35465c}
+.lever-arm{position:absolute;z-index:2;left:15px;top:16px;width:43px;height:5px;border-radius:5px;background:linear-gradient(180deg,#d1deea,#617b98 55%,#2b4057);transition:transform .25s}
+.lever-knob{position:absolute;z-index:3;left:8px;top:6px;width:20px;height:24px;border:1px solid #8da2b8;border-radius:6px;background:linear-gradient(135deg,#879bb0,#2c4057 55%,#101a28);box-shadow:inset 0 1px 2px #fff7,0 2px 5px #0009;transition:transform .25s}
+.lever-knob::after{content:"";position:absolute;left:4px;right:4px;top:4px;height:2px;border-radius:2px;background:#dce8f466}
 .mini-lever[aria-pressed="true"] .lever-arm{transform:translateX(30px)}
 .mini-lever[aria-pressed="true"] .lever-knob{transform:translateX(40px)}
-.mini-lever:focus-visible{outline:2px solid #42a5ff;outline-offset:3px}
-
-/* Đèn báo trạng thái */
-.lever-indicator{
-    width:9px;
-    height:9px;
-    flex:0 0 9px;
-    border-radius:50%;
-    background:#536174;
-    box-shadow:0 0 0 3px #53617422;
-    transition:background .2s,box-shadow .2s;
-}
-.lever-row.is-on .lever-indicator{
-    background:#37f28b;
-    box-shadow:0 0 10px #37f28b,0 0 0 3px #37f28b22;
-}
+.lever-indicator{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#536174;box-shadow:0 0 0 3px #53617422;transition:.2s}
 .lever-row.is-on{border-color:#28644f}
+.lever-row.is-on .lever-indicator{background:#37f28b;box-shadow:0 0 10px #37f28b,0 0 0 3px #37f28b22}
 
+/* Khung webcam AI */
+.ai-camera{margin:22px 0 18px;padding:18px;background:#050a12;border:1px solid #294466;border-radius:14px;overflow:hidden}
+.ai-camera-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ai-camera-head h2{font-size:18px;color:#d8e8ff}
+.camera-state{font-size:12px;color:#9baec9}
+.camera-state::before{content:"● ";color:#f5c451}
+.camera-state.connected::before{color:#37f28b}
+.camera-frame{position:relative;width:100%;aspect-ratio:16/9;min-height:220px;max-height:560px;background:radial-gradient(ellipse at center,#10213a,#03060b 75%);border:1px solid #1c3455;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.camera-frame img{display:block;width:100%;height:100%;object-fit:contain}
+.camera-placeholder{max-width:430px;padding:24px;text-align:center;color:#9baec9;line-height:1.8}
+.camera-placeholder strong{display:block;color:#d8e8ff;font-size:18px;margin-bottom:8px}
+.camera-config{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.camera-config input{flex:1;min-width:220px;padding:12px 14px;color:#eaf2ff;background:#080e19;border:1px solid #294466;border-radius:8px;font:inherit}
+.camera-note{margin-top:10px;color:#8296b3;font-size:12px;line-height:1.7}
 @media(max-width:600px){
-    .lever-row{padding:10px;gap:8px}
-    .lever-copy strong{font-size:14px}
-    .lever-copy small{font-size:12px}
-    .lever-control-wrap{gap:7px}
-    .mini-lever{flex-basis:70px;width:70px;height:36px}
-    .mini-lever[aria-pressed="true"] .lever-arm{transform:translateX(26px)}
-    .mini-lever[aria-pressed="true"] .lever-knob{transform:translateX(34px)}
+header{padding:15px 18px}
+.owl-logo{width:38px;height:38px}
+.logo{font-size:17px}
+.status{font-size:10px}
+.slide{padding:48px 20px}
+h1{letter-spacing:-1px}
+.description{font-size:16px}
+.back-button{width:70px;height:62px}
+.explore-item{padding:19px;gap:12px}
+.item-title{font-size:16px}
+.content-panel{padding:20px}
+.lever-row{padding:10px;gap:8px}
+.lever-copy strong{font-size:14px}
+.lever-copy small{font-size:12px}
+.lever-control-wrap{gap:7px}
+.mini-lever{flex-basis:70px;width:70px;height:36px}
+.mini-lever[aria-pressed="true"] .lever-arm{transform:translateX(26px)}
+.mini-lever[aria-pressed="true"] .lever-knob{transform:translateX(34px)}
+.ai-camera{padding:12px}
+.camera-frame{min-height:190px}
+.camera-config input{min-width:100%}
 }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 
 <body>
 <header>
-    <div class="brand">
-        <img src="owl1-logo.png" alt="Logo con cú" class="owl-logo">
-        <div class="logo">OWL TECH.</div>
-    </div>
-    <div class="status">● SYSTEM ONLINE</div>
+  <div class="brand">
+    <img src="owl1-logo.png" alt="Logo con cú" class="owl-logo">
+    <div class="logo">OWL TECH.</div>
+  </div>
+  <div class="status">● SYSTEM ONLINE</div>
 </header>
 
 <!-- TRANG CHỦ -->
 <section class="slide active" id="homeSlide">
-<div class="container">
+  <div class="container">
     <div class="tag">WELCOME TO MY WORLD</div>
     <h1>Think beyond.<br><span>Build the future.</span></h1>
     <p class="description">Đây là không gian số của tôi, nơi những ý tưởng được hình thành và từng bước trở thành hiện thực. Hành trình công nghệ của tôi bắt đầu từ đây.</p>
     <p class="slogan">“Học tập vốn dĩ là con đường không bao giờ có đích đến.”</p>
     <button class="button" type="button" onclick="goToSlide('exploreSlide','forward')">Khám phá thêm <span>→</span></button>
-</div>
+  </div>
 </section>
 
-<!-- MỤC KHÁM PHÁ -->
+<!-- KHÁM PHÁ -->
 <section class="slide" id="exploreSlide">
-<div class="container">
-    <button class="back-button" type="button" onclick="goToSlide('homeSlide','back')" aria-label="Quay lại trang chủ" title="Quay lại trang chủ">
-        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="backGradient1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
-        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient1)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('homeSlide','back')" aria-label="Quay lại trang chủ">
+      <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="#42a5ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
     <div class="tag">EXPLORE</div>
     <h1>Khám phá <span>thêm.</span></h1>
     <div class="explore-menu">
-        <button class="explore-item" type="button" onclick="goToSlide('dreamSlide','forward')"><span class="number">01</span><span class="item-title">Góc Tâm Sự</span><span class="arrow">→</span></button>
-        <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Cảnh báo sử dụng điện thoại</span><span class="arrow">→</span></button>
-        <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Khám phá thêm</span><span class="arrow">→</span></button>
+      <button class="explore-item" type="button" onclick="goToSlide('dreamSlide','forward')"><span class="number">01</span><span class="item-title">Góc Tâm Sự</span><span class="arrow">→</span></button>
+      <button class="explore-item" type="button" onclick="goToSlide('slide02','forward')"><span class="number">02</span><span class="item-title">Cảnh báo sử dụng điện thoại</span><span class="arrow">→</span></button>
+      <button class="explore-item" type="button" onclick="goToSlide('slide03','forward')"><span class="number">03</span><span class="item-title">Khám phá thêm</span><span class="arrow">→</span></button>
     </div>
-</div>
+  </div>
 </section>
 
 <!-- GÓC TÂM SỰ -->
 <section class="slide" id="dreamSlide">
-<div class="container">
-    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
-        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="backGradient2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
-        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient2)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá">
+      <svg class="back-icon" viewBox="0 0 1024 1024">
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="#42a5ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
     <div class="tag">01 / YOUR SPACE</div>
     <div class="content-panel">
-        <h2>Góc Tâm Sự</h2>
-        <p>Có những điều không dễ nói thành lời. Đây là nơi bạn có thể viết ra suy nghĩ của mình.</p>
-        <form class="dream-form" id="dreamForm">
-            <label for="dreamText">Lời tâm sự của bạn</label>
-            <textarea id="dreamText" placeholder="Viết lời tâm sự của bạn tại đây..." required></textarea>
-            <div class="form-meta"><span>Không cần ghi tên</span><span id="charCount">0 ký tự</span></div>
-            <button class="button" type="submit">Gửi tâm sự</button>
-            <p class="form-note">Vui lòng không ghi thông tin cá nhân nhạy cảm.</p>
-            <div class="dream-message" id="dreamMessage" role="status" aria-live="polite"></div>
-        </form>
+      <h2>Góc Tâm Sự</h2>
+      <p>Có những điều không dễ nói thành lời. Đây là nơi bạn có thể viết ra suy nghĩ của mình.</p>
+      <form class="dream-form" id="dreamForm">
+        <label for="dreamText">Lời tâm sự của bạn</label>
+        <textarea id="dreamText" placeholder="Viết lời tâm sự của bạn tại đây..." required></textarea>
+        <div class="form-meta"><span>Không cần ghi tên</span><span id="charCount">0 ký tự</span></div>
+        <button class="button" type="submit">Gửi tâm sự</button>
+        <p class="form-note">Vui lòng không ghi thông tin cá nhân nhạy cảm.</p>
+        <div class="dream-message" id="dreamMessage" role="status" aria-live="polite"></div>
+      </form>
     </div>
-</div>
+  </div>
 </section>
 
 <!-- CẢNH BÁO THÔNG MINH -->
 <section class="slide" id="slide02">
-<div class="container">
-    <button class="back-button" type="button"
-      onclick="goToSlide('exploreSlide','back')"
-      aria-label="Quay lại mục khám phá">
+  <div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá">
       <svg class="back-icon" viewBox="0 0 1024 1024">
-        <path d="M415 300 V205 L210 330 L415 455 V365
-        C620 350 755 415 760 535 C765 650 660 690 490 715
-        C680 700 800 640 800 525 C800 390 650 290 415 300 Z"
-        fill="none" stroke="#42a5ff" stroke-width="18"
-        stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="#42a5ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
 
     <div class="tag">02 / AI SAFETY SYSTEM</div>
     <h1>Cảnh báo <span>thông minh.</span></h1>
-    <p class="description">
-      Chọn những tính năng em muốn sử dụng. Cả hai tính năng
-      đều được bật sẵn khi mở bảng điều khiển.
-    </p>
+    <p class="description">Chọn những tính năng em muốn sử dụng. Cả hai tính năng đều được bật sẵn khi mở bảng điều khiển.</p>
 
+    <!-- CAMERA -->
+    <div class="ai-camera">
+      <div class="ai-camera-head">
+        <h2>📹 Camera AI trực tiếp</h2>
+        <span class="camera-state" id="cameraState" role="status">Chưa kết nối máy chủ Python</span>
+      </div>
+
+      <div class="camera-frame">
+        <img id="aiVideoFeed" alt="Luồng webcam đã xử lý bởi AI" hidden>
+        <div class="camera-placeholder" id="cameraPlaceholder">
+          <strong>OWL TECH · LIVE AI FEED</strong>
+          Hình ảnh webcam và khung nhận diện AI sẽ xuất hiện tại đây khi máy chủ Python cung cấp luồng video.
+        </div>
+      </div>
+
+      <div class="camera-config">
+        <input id="apiBaseUrl" type="url" inputmode="url" placeholder="Dán URL máy chủ Python, ví dụ https://....trycloudflare.com" aria-label="URL máy chủ Python">
+        <button class="button" id="connectCamera" type="button">Kết nối camera</button>
+      </div>
+
+      <p class="camera-note">
+        Nhập URL công khai của máy chủ Python đang chạy. Máy chủ cần có endpoint
+        <code>/video_feed</code> để truyền video và cho phép kết nối từ website OWL TECH.
+      </p>
+    </div>
+
+    <!-- ĐIỀU KHIỂN AI -->
     <div class="content-panel">
       <h2>Cấu hình hệ thống</h2>
 
@@ -278,15 +225,12 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
           <small>Theo dõi dấu hiệu buồn ngủ qua camera</small>
         </div>
         <div class="lever-control-wrap">
-          <button class="mini-lever" id="enableSleep" type="button"
-            aria-label="Bật hoặc tắt phát hiện buồn ngủ"
-            aria-pressed="true"
-            title="Gạt sang trái để tắt, sang phải để bật">
+          <button class="mini-lever" id="enableSleep" type="button" aria-label="Bật hoặc tắt phát hiện buồn ngủ" aria-pressed="true" title="Gạt sang trái để tắt, sang phải để bật">
             <span class="lever-track" aria-hidden="true"></span>
+            <span class="lever-arm" aria-hidden="true"></span>
             <span class="lever-knob" aria-hidden="true"></span>
           </button>
-          <span class="lever-indicator" id="sleepIndicator"
-            aria-label="Trạng thái buồn ngủ"></span>
+          <span class="lever-indicator" id="sleepIndicator" aria-label="Trạng thái buồn ngủ"></span>
         </div>
       </div>
 
@@ -296,67 +240,57 @@ header{padding:15px 18px}.owl-logo{width:38px;height:38px}.logo{font-size:17px}.
           <small>Nhận diện điện thoại qua camera</small>
         </div>
         <div class="lever-control-wrap">
-          <button class="mini-lever" id="enablePhone" type="button"
-            aria-label="Bật hoặc tắt phát hiện sử dụng điện thoại"
-            aria-pressed="true"
-            title="Gạt sang trái để tắt, sang phải để bật">
+          <button class="mini-lever" id="enablePhone" type="button" aria-label="Bật hoặc tắt phát hiện sử dụng điện thoại" aria-pressed="true" title="Gạt sang trái để tắt, sang phải để bật">
             <span class="lever-track" aria-hidden="true"></span>
+            <span class="lever-arm" aria-hidden="true"></span>
             <span class="lever-knob" aria-hidden="true"></span>
           </button>
-          <span class="lever-indicator" id="phoneIndicator"
-            aria-label="Trạng thái điện thoại"></span>
+          <span class="lever-indicator" id="phoneIndicator" aria-label="Trạng thái điện thoại"></span>
         </div>
       </div>
 
-      <p id="aiStatus" role="status"
-        style="margin-top:20px;color:#9baec9;line-height:1.8">
+      <p id="aiStatus" role="status" style="margin-top:20px;color:#9baec9;line-height:1.8">
         Đã chọn cả hai tính năng. Đang chờ kết nối hệ thống AI.
       </p>
     </div>
-</div>
+  </div>
 </section>
 
 <!-- MỤC 03 -->
 <section class="slide" id="slide03">
-<div class="container">
-    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá" title="Quay lại mục khám phá">
-        <svg class="back-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="backGradient4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1685ff"/><stop offset="55%" stop-color="#397bff"/><stop offset="100%" stop-color="#c05cff"/></linearGradient></defs>
-        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="url(#backGradient4)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <div class="container">
+    <button class="back-button" type="button" onclick="goToSlide('exploreSlide','back')" aria-label="Quay lại mục khám phá">
+      <svg class="back-icon" viewBox="0 0 1024 1024">
+        <path d="M415 300 V205 L210 330 L415 455 V365 C620 350 755 415 760 535 C765 650 660 690 490 715 C680 700 800 640 800 525 C800 390 650 290 415 300 Z" fill="none" stroke="#42a5ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
     <div class="tag">03 / EXPLORE</div>
     <div class="content-panel">
-        <h2>Mục 03</h2>
-        <p>Khu vực này đang được phát triển. Hãy quay lại sau để khám phá thêm.</p>
+      <h2>Mục 03</h2>
+      <p>Khu vực này đang được phát triển. Hãy quay lại sau để khám phá thêm.</p>
     </div>
-</div>
+  </div>
 </section>
 
 <footer>© 2026 OWL TECH. · Built with curiosity.</footer>
 
-<!-- Thư viện Supabase -->
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /*
   Chỉ sử dụng Project URL và Publishable key.
-  Tuyệt đối không đưa Secret key vào website công khai.
+  Không đưa Secret key vào website công khai.
 */
 const SUPABASE_URL = "https://viwvmvyczusosmrprdyf.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Vq2aOHQyMRNmDGQgz_v5EQ_bloWffl0";
 
 let supabaseClient = null;
 
-if (
-    window.supabase &&
-    SUPABASE_URL.startsWith("https://") &&
-    !SUPABASE_URL.includes("YOUR_SUPABASE_URL") &&
-    !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE_PUBLISHABLE_KEY")
-) {
-    supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+if (window.supabase) {
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
 }
 
 /* Chuyển đổi giữa các trang */
@@ -364,142 +298,247 @@ let currentSlide = "homeSlide";
 let isSwitching = false;
 
 function goToSlide(nextSlideId, direction = "forward") {
-    const current = document.getElementById(currentSlide);
-    const next = document.getElementById(nextSlideId);
+  const current = document.getElementById(currentSlide);
+  const next = document.getElementById(nextSlideId);
 
-    if (!current || !next || current === next || isSwitching) return;
+  if (!current || !next || current === next || isSwitching) return;
 
-    isSwitching = true;
-    current.classList.remove("active", "from-left", "from-right");
-    next.classList.remove("from-left", "from-right");
-    next.classList.add(
-        "active",
-        direction === "back" ? "from-left" : "from-right"
-    );
+  isSwitching = true;
+  current.classList.remove("active", "from-left", "from-right");
+  next.classList.remove("from-left", "from-right");
+  next.classList.add(
+    "active",
+    direction === "back" ? "from-left" : "from-right"
+  );
 
-    currentSlide = nextSlideId;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  currentSlide = nextSlideId;
+  window.scrollTo({top:0,left:0,behavior:"auto"});
 
-    setTimeout(function () {
-        next.classList.remove("from-left", "from-right");
-        isSwitching = false;
-    }, 380);
+  setTimeout(() => {
+    next.classList.remove("from-left","from-right");
+    isSwitching = false;
+  }, 380);
 }
 
-/* Các thành phần của biểu mẫu tâm sự */
+/* Góc Tâm Sự */
 const dreamText = document.getElementById("dreamText");
 const charCount = document.getElementById("charCount");
 const dreamForm = document.getElementById("dreamForm");
 const dreamMessage = document.getElementById("dreamMessage");
 const submitButton = dreamForm.querySelector('button[type="submit"]');
 
-/* Đếm số ký tự */
-dreamText.addEventListener("input", function () {
-    charCount.textContent = dreamText.value.length + " ký tự";
-    dreamMessage.classList.remove("visible");
+dreamText.addEventListener("input", () => {
+  charCount.textContent = dreamText.value.length + " ký tự";
+  dreamMessage.classList.remove("visible");
 });
 
-/* Gửi lời tâm sự lên Supabase */
-dreamForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
+dreamForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  const content = dreamText.value.trim();
 
-    const content = dreamText.value.trim();
+  if (!content) {
+    dreamMessage.textContent = "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
+    dreamMessage.classList.add("visible");
+    return;
+  }
 
-    if (!content) {
-        dreamMessage.textContent = "Bạn hãy viết lời tâm sự trước khi gửi nhé.";
-        dreamMessage.classList.add("visible");
-        return;
-    }
+  if (!supabaseClient) {
+    dreamMessage.textContent = "Không thể khởi tạo kết nối. Vui lòng thử lại sau.";
+    dreamMessage.classList.add("visible");
+    return;
+  }
 
-    if (!supabaseClient) {
-        dreamMessage.textContent =
-            "Website chưa được cấu hình kết nối. Vui lòng thử lại sau.";
-        dreamMessage.classList.add("visible");
-        return;
-    }
+  submitButton.disabled = true;
+  submitButton.textContent = "Đang gửi...";
+  dreamMessage.classList.remove("visible");
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Đang gửi...";
-    dreamMessage.classList.remove("visible");
+  try {
+    const {error} = await supabaseClient
+      .from("confessions")
+      .insert([{content:content}]);
 
-    try {
-        const { error } = await supabaseClient
-            .from("confessions")
-            .insert([{ content: content }]);
+    if (error) throw error;
 
-        if (error) throw error;
-
-        dreamMessage.textContent =
-            "Gửi tâm sự thành công. Cảm ơn bạn đã chia sẻ.";
-        dreamMessage.classList.add("visible");
-
-        dreamText.value = "";
-        charCount.textContent = "0 ký tự";
-    } catch (error) {
-        console.error("Lỗi gửi tâm sự:", error);
-        dreamMessage.textContent =
-            "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
-        dreamMessage.classList.add("visible");
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = "Gửi tâm sự";
-    }
+    dreamMessage.textContent = "Gửi tâm sự thành công. Cảm ơn bạn đã chia sẻ.";
+    dreamMessage.classList.add("visible");
+    dreamText.value = "";
+    charCount.textContent = "0 ký tự";
+  } catch (error) {
+    console.error("Lỗi gửi tâm sự:", error);
+    dreamMessage.textContent = "Chưa gửi được tâm sự. Vui lòng thử lại sau.";
+    dreamMessage.classList.add("visible");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Gửi tâm sự";
+  }
 });
 
-/* Điều khiển hai cần gạt */
+/* Kết nối máy chủ Python */
 const enableSleep = document.getElementById("enableSleep");
 const enablePhone = document.getElementById("enablePhone");
 const aiStatus = document.getElementById("aiStatus");
+const apiBaseInput = document.getElementById("apiBaseUrl");
+const connectCameraButton = document.getElementById("connectCamera");
+const cameraState = document.getElementById("cameraState");
+const aiVideoFeed = document.getElementById("aiVideoFeed");
+const cameraPlaceholder = document.getElementById("cameraPlaceholder");
+
+let apiBaseUrl = localStorage.getItem("owlTechApiBaseUrl") || "";
+apiBaseInput.value = apiBaseUrl;
+
+function normalizedApiBase() {
+  return apiBaseUrl.trim().replace(/\/+$/, "");
+}
 
 function updateAIFeatures() {
-    const sleepOn = enableSleep.getAttribute("aria-pressed") === "true";
-    const phoneOn = enablePhone.getAttribute("aria-pressed") === "true";
+  const sleepOn = enableSleep.getAttribute("aria-pressed") === "true";
+  const phoneOn = enablePhone.getAttribute("aria-pressed") === "true";
 
-    const sleepRow = enableSleep.closest(".lever-row");
-    const phoneRow = enablePhone.closest(".lever-row");
+  enableSleep.closest(".lever-row").classList.toggle("is-on", sleepOn);
+  enablePhone.closest(".lever-row").classList.toggle("is-on", phoneOn);
 
-    sleepRow.classList.toggle("is-on", sleepOn);
-    phoneRow.classList.toggle("is-on", phoneOn);
+  document.getElementById("sleepIndicator").title =
+    sleepOn ? "Đang bật" : "Đang tắt";
+  document.getElementById("phoneIndicator").title =
+    phoneOn ? "Đang bật" : "Đang tắt";
 
-    document.getElementById("sleepIndicator").setAttribute(
-        "title",
-        sleepOn ? "Đang bật" : "Đang tắt"
-    );
+  const selected = [];
+  if (sleepOn) selected.push("phát hiện buồn ngủ");
+  if (phoneOn) selected.push("phát hiện điện thoại");
 
-    document.getElementById("phoneIndicator").setAttribute(
-        "title",
-        phoneOn ? "Đang bật" : "Đang tắt"
-    );
+  aiStatus.textContent = selected.length
+    ? "Đang chọn: " + selected.join(" và ") + "."
+    : "Cả hai tính năng đang được tắt.";
+}
 
-    const selected = [];
+function setCameraState(message, connected = false) {
+  cameraState.textContent = message;
+  cameraState.classList.toggle("connected", connected);
+}
 
-    if (sleepOn) selected.push("phát hiện buồn ngủ");
-    if (phoneOn) selected.push("phát hiện điện thoại");
+/* Đọc trạng thái AI hiện tại từ API */
+async function refreshAIStatus() {
+  const base = normalizedApiBase();
+  if (!base) return;
 
-    if (selected.length === 0) {
-        aiStatus.textContent = "Cả hai tính năng đang được tắt.";
-    } else {
-        aiStatus.textContent = "Đang bật: " + selected.join(" và ") + ".";
+  try {
+    const response = await fetch(base + "/api/status");
+    if (!response.ok) throw new Error("HTTP " + response.status);
+
+    const data = await response.json();
+
+    if (typeof data.sleep_enabled === "boolean") {
+      enableSleep.setAttribute("aria-pressed", String(data.sleep_enabled));
     }
+    if (typeof data.phone_enabled === "boolean") {
+      enablePhone.setAttribute("aria-pressed", String(data.phone_enabled));
+    }
+
+    updateAIFeatures();
+  } catch (error) {
+    console.warn("Không đọc được trạng thái AI:", error);
+    aiStatus.textContent =
+      "Không đọc được trạng thái Python. Kiểm tra URL, máy chủ và CORS.";
+  }
+}
+
+/* Gửi cấu hình công tắc đến API */
+async function saveFeatureSettings() {
+  const base = normalizedApiBase();
+
+  if (!base) {
+    aiStatus.textContent =
+      "Hãy nhập URL máy chủ Python để đồng bộ công tắc với hệ thống AI.";
+    return;
+  }
+
+  const settings = {
+    sleep_enabled: enableSleep.getAttribute("aria-pressed") === "true",
+    phone_enabled: enablePhone.getAttribute("aria-pressed") === "true"
+  };
+
+  try {
+    const response = await fetch(base + "/api/settings", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(settings)
+    });
+
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    aiStatus.textContent = "Đã gửi cấu hình đến máy chủ Python.";
+  } catch (error) {
+    console.error("Không cập nhật được cấu hình AI:", error);
+    aiStatus.textContent =
+      "Chưa đồng bộ được với Python. Kiểm tra API và cấu hình CORS.";
+  }
 }
 
 function toggleLever(button) {
-    const isOn = button.getAttribute("aria-pressed") === "true";
-
-    button.setAttribute("aria-pressed", String(!isOn));
-    updateAIFeatures();
+  const isOn = button.getAttribute("aria-pressed") === "true";
+  button.setAttribute("aria-pressed", String(!isOn));
+  updateAIFeatures();
+  saveFeatureSettings();
 }
 
-enableSleep.addEventListener("click", function () {
-    toggleLever(enableSleep);
-});
+enableSleep.addEventListener("click", () => toggleLever(enableSleep));
+enablePhone.addEventListener("click", () => toggleLever(enablePhone));
 
-enablePhone.addEventListener("click", function () {
-    toggleLever(enablePhone);
-});
+/* Kết nối luồng video */
+async function connectCamera() {
+  apiBaseUrl = apiBaseInput.value.trim().replace(/\/+$/, "");
 
-/* Cập nhật giao diện khi mở trang */
+  if (!apiBaseUrl || !/^https?:\/\//i.test(apiBaseUrl)) {
+    setCameraState("Cần nhập URL máy chủ Python");
+    cameraPlaceholder.hidden = false;
+    aiVideoFeed.hidden = true;
+    cameraPlaceholder.innerHTML =
+      "<strong>Chưa có URL máy chủ</strong>" +
+      "Hãy dán URL công khai của máy chủ Python vào ô bên trên.";
+    return;
+  }
+
+  localStorage.setItem("owlTechApiBaseUrl", apiBaseUrl);
+  setCameraState("Đang kết nối...");
+  connectCameraButton.disabled = true;
+  connectCameraButton.textContent = "Đang kết nối...";
+
+  aiVideoFeed.onload = () => {
+    aiVideoFeed.hidden = false;
+    cameraPlaceholder.hidden = true;
+    setCameraState("Đã nhận luồng video", true);
+  };
+
+  aiVideoFeed.onerror = () => {
+    aiVideoFeed.hidden = true;
+    cameraPlaceholder.hidden = false;
+    cameraPlaceholder.innerHTML =
+      "<strong>Chưa nhận được video AI</strong>" +
+      "Kiểm tra endpoint /video_feed, URL tunnel và máy chủ Python.";
+    setCameraState("Chưa có luồng video");
+  };
+
+  aiVideoFeed.src = apiBaseUrl + "/video_feed?t=" + Date.now();
+
+  await refreshAIStatus();
+
+  setTimeout(() => {
+    connectCameraButton.disabled = false;
+    connectCameraButton.textContent = "Kết nối lại";
+
+    if (aiVideoFeed.hidden && cameraState.textContent === "Đang kết nối...") {
+      setCameraState("Đang chờ luồng video");
+    }
+  }, 1800);
+}
+
+connectCameraButton.addEventListener("click", connectCamera);
+
+/* Khởi tạo giao diện */
 updateAIFeatures();
+
+if (apiBaseUrl) {
+  setCameraState("Đã lưu URL máy chủ · nhấn Kết nối camera");
+}
 </script>
 </body>
 </html>
